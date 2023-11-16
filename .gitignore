@@ -70,3 +70,14 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Assets
+Assets/KANIYONIKA.meta
+Assets/KANIYONIKA
+Assets/KANIYONIKA/
+Assets/KANIYONIKA/*
+
+Assets/TextMesh Pro.meta
+Assets/TextMesh Pro
+Assets/TextMesh Pro/
+Assets/TextMesh Pro/*
