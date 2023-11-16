@@ -19,8 +19,8 @@ public class Controller : MonoBehaviour {
     }
 
     [Header("Screens:")]
-    public static GameObject HandMenu;
-    public static EditSolidScreen OpenedEditSolidScreen = null;
+    public GameObject HandMenu;
+    public EditSolidScreen EditSolidScreen;
 
     [Header("Materials:")]
     public Material DefaultMaterial;

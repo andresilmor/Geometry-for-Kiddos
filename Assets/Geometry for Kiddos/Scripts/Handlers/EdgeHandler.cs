@@ -36,11 +36,11 @@ public class EdgeHandler : SolidComponent {
             _lineRenderer.SetPosition(0, _vertices[0].Mesh.transform.position);
             _lineRenderer.SetPosition(1, _vertices[1].Mesh.transform.position);
 
-            if (_solid.EnabledOcclusion && !_solid.IsSolidColor && _vertices != null && _vertices.Length > 0) {
+            if (_solid.Edges.EnabledOcclusion && !_solid.IsSolidColor && _vertices != null && _vertices.Length > 0) {
                 Debug.Log("Here");
                 UpdateLocalOcclusionMaterial();
 
-                if (_solid.GlobalOcclusion)
+                if (_solid.Edges.EnabledGlobalOcclusion)
                     UpdateGlobalOcclusionMaterial();
 
             }
@@ -56,14 +56,13 @@ public class EdgeHandler : SolidComponent {
     private void UpdateLocalOcclusionMaterial() {
         _visibleVertices = _vertices.Length;
 
-
         foreach (VerticeHandler vertice in _vertices) {
             Vector3 verticePos = vertice.Mesh.transform.position;
             Transform cameraTransform = _camera.transform;
 
             RaycastHit hit;
             if (Physics.Raycast(verticePos, cameraTransform.position - verticePos, out hit, Mathf.Infinity, Controller.Instance.OcclusionColliderLayer)) {
-                foreach (GameObject bound in _solid.CollisionBounds)
+                foreach (GameObject bound in _solid.Physics.OcclusionBounds)
                     if (hit.collider.gameObject == bound)
                         _visibleVertices -= 1;
                
@@ -101,7 +100,7 @@ public class EdgeHandler : SolidComponent {
             RaycastHit hit;
             int count = 0;
             if (Physics.Raycast(verticePos, cameraTransform.position - verticePos, out hit, Mathf.Infinity, Controller.Instance.OcclusionColliderLayer)) {
-                foreach (GameObject bound in _solid.CollisionBounds)
+                foreach (GameObject bound in _solid.Physics.OcclusionBounds)
                     if (hit.collider.gameObject != bound) { 
                         _visibleVertices -= 1;
                     }

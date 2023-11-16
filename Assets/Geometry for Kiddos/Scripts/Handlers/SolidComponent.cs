@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class SolidComponent : MonoBehaviour {
+abstract public class SolidComponent : MonoBehaviour {
     [SerializeField] protected string _letterKey = "Big Letter";
     [SerializeField] protected string _meshKey = "Sphere";
 
@@ -33,7 +33,7 @@ public class SolidComponent : MonoBehaviour {
 
     }
 
-    public void SetSolid(SolidHandler solid) {
+    public void BindSolid(SolidHandler solid) {
         _solid = solid;
     }
 

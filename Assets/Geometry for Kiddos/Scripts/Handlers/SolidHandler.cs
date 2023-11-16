@@ -1,95 +1,84 @@
 using MixedReality.Toolkit;
 using MixedReality.Toolkit.SpatialManipulation;
+using MixedReality.Toolkit.UX;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
-using static SolidSpawnerManager;
-
 
 public class SolidHandler : MonoBehaviour {
     public string SolidDesignation = "Cube";
     Guid _identifier;
     public Guid Identifier { get { return _identifier; } }  
 
-    GameObject _solid;
-    EditSolidScreen _solidPanel;
+    [SerializeField] GameObject _solid;
+    [SerializeField] EdgesManager _edges;
+    [SerializeField] VerticesManager _vertices;
+    [SerializeField] SurfacesManager _surfaces;
+    [SerializeField] PhysicsHandler _physics;
+    [SerializeField] MeshRenderer _mesh;
 
     ObjectManipulator _solidManipulator;
 
-    BoxCollider _solidCollider;
-    Rigidbody _solidRigidbody;
-
-    public MeshRenderer SolidMeshRenderer;
-    public MeshRenderer[] SolidSurfaces;
-    public VerticeHandler[] SolidVertices;
-    public EdgeHandler[] SolidEdges;
-    public GameObject[] CollisionBounds;
-
     public GameObject Solid { get { return _solid; } }
+    public EdgesManager Edges { get { return _edges; } }
+    public VerticesManager Vertices { get { return _vertices; } }
+    public SurfacesManager Surfaces { get { return _surfaces; } }
+    public PhysicsHandler Physics { get { return _physics; } }
+    public MeshRenderer Mesh { get { return _mesh; } }
 
     public ObjectManipulator ObjectManipulator { get { return _solidManipulator; } }
 
-    public Rigidbody SolidRigidbody { get { return _solidRigidbody; } }
-    public BoxCollider SolidCollider { get { return _solidCollider; } }
-
     public bool IsSolidColor = true;
-    public bool GloabalCollision = false;
-    public bool GlobalOcclusion = false;
-
     public Color BackupColor;
 
-    bool _enabledOcclusion = false;
-    public bool EnabledOcclusion {
-        get { return _enabledOcclusion; }
-        set {
-            if (!value)
-                foreach (EdgeHandler edgeHandler in SolidEdges) { 
-                    edgeHandler.ResetLineMaterial();
-                    edgeHandler.ResetOcclusionedVariables();
-
-                }
-            _enabledOcclusion = value;
-        }
+    #region Personalization
+    [Serializable]
+    public class Personalization {
+        public EditSolidOption Value;
+        public bool Toggled;
+        public void SetToggle(bool value) { Toggled = value; }
+        public bool IsToggled() { return Toggled; }
+        public EditSolidOption GetValue() { return Value; }
     }
+
+    [SerializeField] Personalization[] PersonalizationValues;
+    public Dictionary<EditSolidOption, Personalization> SolidPersonalization = new Dictionary<EditSolidOption, Personalization>();
+   
+
+    #endregion
 
     private void Awake() {
 
     }
 
     void Start() {
-        _identifier = Guid.NewGuid(); 
-        Debug.Log("Identifier: " + _identifier.ToString());
-        Controller.Instance.SolidsActives.Add(_identifier, this);
+        Debug.Log("Yo " + PersonalizationValues.Length);
 
-        _solid = transform.Find("Solid").gameObject;
-        _solidPanel = transform.Find("Panel").gameObject.GetComponent<EditSolidScreen>();
+        foreach (Personalization personalization in PersonalizationValues) {
+            Debug.Log("Yo " + PersonalizationValues.Length);
+            Debug.Log("Adding");
+            SolidPersonalization.Add(personalization.GetValue(), personalization);
+        }
+
+        _identifier = Guid.NewGuid(); 
+        Controller.Instance.SolidsActives.Add(_identifier, this);
 
         _solidManipulator = Solid.GetComponent<ObjectManipulator>();
 
-        _solidCollider = Solid.transform.Find("Body").GetComponent<BoxCollider>();
-        _solidRigidbody = Solid.transform.Find("Body").GetComponent<Rigidbody>();
-
-        _solidPanel.gameObject.SetActive(false);
-        _solidPanel.BindSolid(this);
-
-        _solidRigidbody.isKinematic = true;
-
-        foreach (VerticeHandler vertice in SolidVertices)
-            vertice.SetSolid(this);
-
-        foreach (EdgeHandler edge in SolidEdges)
-            edge.SetSolid(this);
+        _edges.BindSolid(this);
+        _vertices.BindSolid(this);
 
         Controller.OnApplicationModeChange.Add((ApplicationMode mode) => {
             switch (mode) {
                 case ApplicationMode.Manipulate:
-                    _solidPanel.ToggleManipulation(true);
-                    _solidPanel.gameObject.SetActive(false);
+                    ObjectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
                     break;
 
                 case ApplicationMode.Edit:
-                    _solidPanel.ToggleManipulation(false);
+                    Controller.Instance.EditSolidScreen.gameObject.SetActive(false);
+                    ObjectManipulator.AllowedManipulations = TransformFlags.None;
                     break;
 
             }
@@ -104,8 +93,7 @@ public class SolidHandler : MonoBehaviour {
 
     public void SetColor(Color color, GameObject[] surfaces = null) {
         if (surfaces == null) {
-            foreach (MeshRenderer surface in SolidSurfaces)
-                surface.material.color = color;
+            
 
             IsSolidColor = color.a >= 0.9f;
 
@@ -116,17 +104,20 @@ public class SolidHandler : MonoBehaviour {
 
     }
 
+    public void ResetEdges() {
+        _edges.ResetEdges();
+    }
+
     public void OnClick() {
         Debug.Log(Controller.ApplicationMode);
         switch (Controller.ApplicationMode) {
             case ApplicationMode.Edit:
-                if (!_solidPanel.gameObject.activeSelf) { 
-                    if (Controller.OpenedEditSolidScreen != null && Controller.OpenedEditSolidScreen != _solidPanel)
-                        Controller.OpenedEditSolidScreen.gameObject.SetActive(false);
+                Controller.Instance.EditSolidScreen.gameObject.SetActive(true);
+                Controller.Instance.EditSolidScreen.BindSolid(this);
+                Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
+                position.y += -0.37f;
+                Controller.Instance.EditSolidScreen.gameObject.transform.position = position;
 
-                    Controller.OpenedEditSolidScreen = _solidPanel;
-                    _solidPanel.gameObject.SetActive(true);
-                }
                 break;
 
         }
@@ -134,7 +125,7 @@ public class SolidHandler : MonoBehaviour {
     }
 
     void OnDisable() {
-        _solidPanel.gameObject.SetActive(false);
+        Controller.Instance.EditSolidScreen.gameObject.gameObject.SetActive(false);
 
 
     }
