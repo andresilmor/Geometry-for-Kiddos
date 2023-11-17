@@ -19,8 +19,8 @@ public class Controller : MonoBehaviour {
     }
 
     [Header("Screens:")]
-    public GameObject HandMenu;
-    public EditSolidScreen EditSolidScreen;
+    public HandMenuView HandMenu;
+    public EditSolidView EditSolid;
 
     [Header("Materials:")]
     public Material DefaultMaterial;
@@ -47,17 +47,12 @@ public class Controller : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        ApplicationMode = ApplicationMode.Manipulate;
+        HandMenu.SetApplicationMode(0);
 
     }
 
     // Update is called once per frame
     void Update() {
-
-    }
-
-    public void SetApplicationMode(int mode) {
-        ApplicationMode = (ApplicationMode)mode;
 
     }
 

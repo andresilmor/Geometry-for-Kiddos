@@ -77,7 +77,7 @@ public class SolidHandler : MonoBehaviour {
                     break;
 
                 case ApplicationMode.Edit:
-                    Controller.Instance.EditSolidScreen.gameObject.SetActive(false);
+                    Controller.Instance.EditSolid?.gameObject.SetActive(false);
                     ObjectManipulator.AllowedManipulations = TransformFlags.None;
                     break;
 
@@ -112,11 +112,12 @@ public class SolidHandler : MonoBehaviour {
         Debug.Log(Controller.ApplicationMode);
         switch (Controller.ApplicationMode) {
             case ApplicationMode.Edit:
-                Controller.Instance.EditSolidScreen.gameObject.SetActive(true);
-                Controller.Instance.EditSolidScreen.BindSolid(this);
+                Controller.Instance.EditSolid?.gameObject.SetActive(true);
+                Controller.Instance.EditSolid?.BindSolid(this);
                 Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
                 position.y += -0.37f;
-                Controller.Instance.EditSolidScreen.gameObject.transform.position = position;
+                if (Controller.Instance.EditSolid != null) 
+                    Controller.Instance.EditSolid.gameObject.transform.position = position;
 
                 break;
 
@@ -125,7 +126,7 @@ public class SolidHandler : MonoBehaviour {
     }
 
     void OnDisable() {
-        Controller.Instance.EditSolidScreen.gameObject.gameObject.SetActive(false);
+        Controller.Instance.EditSolid.gameObject.gameObject.SetActive(false);
 
 
     }

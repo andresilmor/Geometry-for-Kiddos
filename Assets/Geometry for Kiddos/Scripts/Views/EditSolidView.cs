@@ -1,14 +1,11 @@
 using MixedReality.Toolkit;
 using MixedReality.Toolkit.UX;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class EditSolidScreen : MonoBehaviour {
+public class EditSolidView : MonoBehaviour {
     
     [Header("Panel Config:")]
     [SerializeField] TextMeshPro panelTitle;
@@ -76,7 +73,7 @@ public class EditSolidScreen : MonoBehaviour {
     }
 
     public void OnClosePanel() {
-        Controller.ApplicationMode = ApplicationMode.Manipulate;
+        Controller.Instance.HandMenu.SetApplicationMode(0);
 
     }
 

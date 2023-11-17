@@ -6,7 +6,7 @@ using UnityEngine;
 public class SolidSpawnerManager : MonoBehaviour
 {
     public static SolidSpawnerManager Instance = null;
-    [SerializeField] CreateMenuScreen _createMenuScreen;
+    [SerializeField] CreateMenuView _createMenuScreen;
 
     [Serializable]
     public struct SpawnableSolid {
