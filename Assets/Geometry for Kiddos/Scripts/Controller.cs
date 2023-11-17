@@ -47,7 +47,7 @@ public class Controller : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        HandMenu.SetApplicationMode(0);
+        HandMenu.SetApplicationMode((int)ApplicationMode.Manipulate);
 
     }
 

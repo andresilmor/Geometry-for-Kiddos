@@ -19,8 +19,8 @@ abstract public class SolidComponent : MonoBehaviour {
 
     private void Awake() {
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
-        _mesh = this.transform.Find(_meshKey).gameObject;
-        _letter = this.transform.Find(_letterKey).gameObject;
+        _mesh = this.transform.Find(_meshKey)?.gameObject;
+        _letter = this.transform.Find(_letterKey)?.gameObject;
 
         if (_letter != null )
             _letter.transform.Find("Text").GetComponent<TextMeshPro>().text = _designation;

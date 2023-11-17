@@ -994,6 +994,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 291989357017198574, guid: c52e26fc23aac2244a93a5ea94a0dd6e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 291989357017198575, guid: c52e26fc23aac2244a93a5ea94a0dd6e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1736,10 +1740,6 @@ PrefabInstance:
     - target: {fileID: 2132079817803871118, guid: d5cd59c846ec5b94d9b138e9c4029926, type: 3}
       propertyPath: m_Name
       value: MRTK XR Rig
-      objectReference: {fileID: 0}
-    - target: {fileID: 6588323804196111603, guid: d5cd59c846ec5b94d9b138e9c4029926, type: 3}
-      propertyPath: m_Density
-      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5cd59c846ec5b94d9b138e9c4029926, type: 3}

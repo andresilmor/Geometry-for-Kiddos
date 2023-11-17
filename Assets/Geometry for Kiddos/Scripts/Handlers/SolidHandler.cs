@@ -69,6 +69,17 @@ public class SolidHandler : MonoBehaviour {
         _edges.BindSolid(this);
         _vertices.BindSolid(this);
 
+        switch (Controller.ApplicationMode) {
+            case ApplicationMode.Manipulate:
+                ObjectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
+                break;
+
+            case ApplicationMode.Edit:
+                ObjectManipulator.AllowedManipulations = TransformFlags.None;
+                break;
+
+        }
+
         Controller.OnApplicationModeChange.Add((ApplicationMode mode) => {
             switch (mode) {
                 case ApplicationMode.Manipulate:
@@ -90,21 +101,16 @@ public class SolidHandler : MonoBehaviour {
 
     }
 
-    public void SetColor(UnityEngine.Color color, GameObject[] surfaces = null) {
-        if (surfaces == null) {
-            
-
-            IsSolidColor = color.a >= 0.9f;
-
-        }
-
-        //SolidMeshRenderer.material.color = color;
-        //IsSolidColor = color.a >= 0.9f;
-
-    }
-
     public void ResetEdges() {
         _edges.ResetEdges();
+    }
+
+    public void DisplayEditPanel() {
+        Controller.Instance.EditSolid.gameObject.SetActive(true);
+        Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
+        position.y += -0.37f;
+        Controller.Instance.EditSolid.gameObject.transform.position = position;
+
     }
 
     public void OnClick() {
@@ -113,23 +119,19 @@ public class SolidHandler : MonoBehaviour {
             case ApplicationMode.Edit:
                 if (Controller.Instance.EditSolid.BindedSolid != this) {
                     Debug.Log("Binding Solid");
-                    Controller.Instance.EditSolid?.gameObject.SetActive(true);
-                    Controller.Instance.EditSolid?.BindSolid(this);
-                    Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
-                    position.y += -0.37f;
-                    if (Controller.Instance.EditSolid != null) 
-                        Controller.Instance.EditSolid.gameObject.transform.position = position;
+                    DisplayEditPanel();
+                    Controller.Instance.EditSolid.BindSolid(this);
 
                 } else {
-                    Debug.Log("Solid Already binded");
+                    if (!Controller.Instance.EditSolid.gameObject.activeSelf)
+                        DisplayEditPanel();
+
                     switch (Controller.Instance.EditSolid.EditMethod) {
                         case EditMethod.Paint: {
-                                Debug.Log("Gonna Paint");
-                                Debug.Log("Picked color " + Controller.Instance.EditSolid.PickedColor);
                                 if (Controller.Instance.EditSolid.IndividualPaint) {
-                                    Debug.Log("Indivdual");
+                                    (Controller.Instance.EditSolid.SelectedComponentToPaint as SurfaceHandler).PaintSurface(Controller.Instance.EditSolid.PickedColor);
+
                                 } else {
-                                    Debug.Log("Full");
                                     IsSolidColor = Controller.Instance.EditSolid.PickedColor.a >= 0.9f;
                                     _surfaces.PaintAllSurfaces(Controller.Instance.EditSolid.PickedColor);
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SurfaceHandler : MonoBehaviour
+public class SurfaceHandler : SolidComponent
 {
     Color _latestColor;
     Color _currentColor;
@@ -25,6 +25,22 @@ public class SurfaceHandler : MonoBehaviour
     public void SetVisibility(bool isVisible) {
         _meshRenderer.enabled = isVisible;  
 
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        switch (Controller.ApplicationMode) {
+            case ApplicationMode.Edit: {
+                    switch (Controller.Instance.EditSolid.EditMethod) {
+                        case EditMethod.Paint:
+                            Controller.Instance.EditSolid.SelectedComponentToPaint = this;
+                            break;
+
+                    }
+
+                    break;
+                }
+
+        }
     }
 
 }

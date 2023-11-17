@@ -605,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MeshPrefab: {fileID: 0}
-  m_Density: 0.5
+  m_Density: 0.6
   m_Normals: 1
   m_Tangents: 0
   m_TextureCoordinates: 0
@@ -622,6 +622,14 @@ PrefabInstance:
       propertyPath: dependentInteractor
       value: 
       objectReference: {fileID: 415635625548627689}
+    - target: {fileID: 6212388295211094053, guid: 82333e6e543cb7e4dbd5b1d47aff3f58, type: 3}
+      propertyPath: m_TagString
+      value: RightHandReticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541364141215530913, guid: 82333e6e543cb7e4dbd5b1d47aff3f58, type: 3}
+      propertyPath: m_TagString
+      value: RightHandReticle
+      objectReference: {fileID: 0}
     - target: {fileID: 8544718171901067398, guid: 82333e6e543cb7e4dbd5b1d47aff3f58, type: 3}
       propertyPath: m_Name
       value: MRTK RightHand Controller
@@ -672,6 +680,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82333e6e543cb7e4dbd5b1d47aff3f58, type: 3}
+--- !u!1 &1552636056735173418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1249331885970594095, guid: 82333e6e543cb7e4dbd5b1d47aff3f58, type: 3}
+  m_PrefabInstance: {fileID: 349757944494117381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1994471510783428150
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552636056735173418}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.008
+  m_Center: {x: 0, y: -0.0000000013969839, z: 0}
+--- !u!1 &1836725920519611566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2136899204090672811, guid: 82333e6e543cb7e4dbd5b1d47aff3f58, type: 3}
+  m_PrefabInstance: {fileID: 349757944494117381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &3541805848567245066
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836725920519611566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.008
+  m_Center: {x: 0, y: -0.0000000013969839, z: 0}
 --- !u!114 &4380894315734417024 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4041565961123392645, guid: 82333e6e543cb7e4dbd5b1d47aff3f58, type: 3}
@@ -928,8 +972,52 @@ PrefabInstance:
       propertyPath: dependentInteractor
       value: 
       objectReference: {fileID: 415635625548627689}
+    - target: {fileID: 3988544559415115453, guid: c89f12cb641c27e47b7b71af1d6518a5, type: 3}
+      propertyPath: m_TagString
+      value: LeftHandReticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4299642553587339577, guid: c89f12cb641c27e47b7b71af1d6518a5, type: 3}
+      propertyPath: m_TagString
+      value: LeftHandReticle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c89f12cb641c27e47b7b71af1d6518a5, type: 3}
+--- !u!1 &539881397141342108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8086910922498750391, guid: c89f12cb641c27e47b7b71af1d6518a5, type: 3}
+  m_PrefabInstance: {fileID: 8594119223476760619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1136304312583106923
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539881397141342108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.008
+  m_Center: {x: 0, y: -0.0000000013969839, z: 0}
+--- !u!1 &832960867984779288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8992338914735331379, guid: c89f12cb641c27e47b7b71af1d6518a5, type: 3}
+  m_PrefabInstance: {fileID: 8594119223476760619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1432464574887559615
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832960867984779288}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.008
+  m_Center: {x: 0, y: -0.0000000013969839, z: 0}
 --- !u!114 &2508301652398824882 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6164080946324827545, guid: c89f12cb641c27e47b7b71af1d6518a5, type: 3}

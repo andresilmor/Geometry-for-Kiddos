@@ -11,6 +11,7 @@ public class HandMenuView : MonoBehaviour
     public void SetApplicationMode(int mode) {
         Controller.ApplicationMode = (ApplicationMode)mode;
         _currentMode.text = Controller.ApplicationMode.ToString();
+        Debug.Log("Setting to " + mode + "(" + Controller.ApplicationMode.ToString() + ")");
 
     }
 

@@ -48,7 +48,6 @@ public class EditSolidView : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-
         foreach (SubPanel subPanel in SubPanels) { 
             _subPanels.Add(subPanel.EditMode, subPanel.Panel);
             subPanel.Panel.SetActive(false);
@@ -74,10 +73,13 @@ public class EditSolidView : MonoBehaviour {
 
         }
 
+        InvalidateEditMethod(new EditMethod[] { EditMethod.Paint });
+
     }
 
     public void OnClosePanel() {
         Controller.Instance.HandMenu.SetApplicationMode(0);
+        InvalidateEditMethod(new EditMethod[] { EditMethod.Paint });
 
     }
 
@@ -86,12 +88,20 @@ public class EditSolidView : MonoBehaviour {
         Debug.Log("Binding " + SolidPersonalization.Length);
         panelTitle.text = "Editar " + _bindedSolid.SolidDesignation;
         Debug.Log("Binding " + SolidPersonalization.Length);
-        
+        InvalidateEditMethod(new EditMethod[] { EditMethod.Paint });
+
         foreach (Personalization personalization in SolidPersonalization) {
             Debug.Log("EditSolidScreen Personalization");
             personalization.GetButton().ForceSetToggled(_bindedSolid.SolidPersonalization[personalization.GetOption()].GetBool());
 
         }
+
+    }
+
+    public void InvalidateEditMethod(EditMethod[] editMethodToInvalidate) {
+        foreach (EditMethod method in editMethodToInvalidate)
+            if (EditMethod == method)
+                EditMethod = EditMethod.None;
 
     }
 
@@ -120,8 +130,6 @@ public class EditSolidView : MonoBehaviour {
     }
 
     public void ToggleSolidVisibility(bool isVisible) {
-        //_bindedSolid.SetColor(_bindedSolid.SolidMeshRenderer.material.color);
-
         foreach (SurfaceHandler surface in _bindedSolid.Surfaces.List()) {
             surface.SetVisibility(isVisible);
 
@@ -212,23 +220,26 @@ public class EditSolidView : MonoBehaviour {
     bool _individualPaint = false;
     public bool IndividualPaint { get { return _individualPaint; } }
     public UnityEngine.Color PickedColor { get { return _pickedColor; } }
+    public SolidComponent SelectedComponentToPaint;
 
     public void ToggleIndividualPaint(bool toEnable) {
         _bindedSolid.SolidPersonalization[EditSolidOption.IndividualPaint].SetBool(toEnable);
         _individualPaint = toEnable;
 
+        if (EditMethod.Equals(EditMethod.Paint))
+            EditMethod = EditMethod.None;
+
     }
 
     public void PickColor(string hexColor) {
-        EditMethod = EditMethod.Paint;
-        _pickedColor = Parser.HexToColor(hexColor);
-        Debug.Log("Edit Method Paint");
-    }
+        if (_individualPaint) { 
+            EditMethod = EditMethod.Paint;
+            _pickedColor = Parser.HexToColor(hexColor);
+            return;
+        
+        }
 
-    public void SetSolidColor(string hexColor) {
-        _bindedSolid.SetColor(Parser.HexToColor(hexColor));
-        _bindedSolid.ResetEdges();
-        _hideSolidCheckbox.ForceSetToggled(false);
+        _bindedSolid.Surfaces.PaintAllSurfaces(Parser.HexToColor(hexColor));
 
     }
 
@@ -246,8 +257,7 @@ public class EditSolidView : MonoBehaviour {
         foreach (SubPanel subPanel in SubPanels)
             subPanel.Panel.SetActive(false);
 
-        EditMode = SolidEditMode.None;
-
+        InvalidateEditMethod(new EditMethod[] { EditMethod.Paint });
 
     }
 
