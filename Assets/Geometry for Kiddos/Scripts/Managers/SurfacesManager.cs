@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SurfacesManager : MonoBehaviour
 {
-    [SerializeField] MeshRenderer[] _list;
+    [SerializeField] SurfaceHandler[] _list;
 
 
     // Start is called before the first frame update
@@ -19,13 +19,13 @@ public class SurfacesManager : MonoBehaviour
         
     }
 
-    public MeshRenderer[] List() {
+    public SurfaceHandler[] List() {
         return _list;
     }
 
     public void PaintAllSurfaces(Color color) {
-        foreach (MeshRenderer surface in _list)
-            surface.material.color = color;
+        foreach (SurfaceHandler surface in _list)
+            surface.PaintSurface(color);
     }
 
 }

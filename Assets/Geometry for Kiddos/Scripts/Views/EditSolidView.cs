@@ -12,6 +12,7 @@ public class EditSolidView : MonoBehaviour {
     [SerializeField] float panelOffsetX = 0.33f;
 
     public SolidEditMode EditMode = SolidEditMode.None;
+    public EditMethod EditMethod = EditMethod.None;
 
     [Serializable]
     public struct SubPanel {
@@ -28,13 +29,15 @@ public class EditSolidView : MonoBehaviour {
     GameObject _currentSubPanel = null;
     SolidHandler _bindedSolid;
 
+    public SolidHandler BindedSolid { get { return _bindedSolid; } }
+
     #region Personalization
     [Serializable]
     public class Personalization {
-        public EditSolidOption Value;
-        public PressableButton Checkbox;
-        public PressableButton GetCheckbox() { return Checkbox; }
-        public EditSolidOption GetValue() { return Value; }
+        public EditSolidOption Option;
+        public PressableButton Button;
+        public PressableButton GetButton() { return Button; }
+        public EditSolidOption GetOption() { return Option; }
 
     }
 
@@ -67,6 +70,7 @@ public class EditSolidView : MonoBehaviour {
             _currentSubPanel = _subPanels[(SolidEditMode)editMode];
 
             EditMode = (SolidEditMode)editMode;
+            EditMethod = EditMethod.None;
 
         }
 
@@ -85,7 +89,7 @@ public class EditSolidView : MonoBehaviour {
         
         foreach (Personalization personalization in SolidPersonalization) {
             Debug.Log("EditSolidScreen Personalization");
-            personalization.GetCheckbox().ForceSetToggled(_bindedSolid.SolidPersonalization[personalization.GetValue()].IsToggled());
+            personalization.GetButton().ForceSetToggled(_bindedSolid.SolidPersonalization[personalization.GetOption()].GetBool());
 
         }
 
@@ -118,8 +122,8 @@ public class EditSolidView : MonoBehaviour {
     public void ToggleSolidVisibility(bool isVisible) {
         //_bindedSolid.SetColor(_bindedSolid.SolidMeshRenderer.material.color);
 
-        foreach (MeshRenderer mesh in _bindedSolid.Surfaces.List()) {
-            mesh.enabled = isVisible;
+        foreach (SurfaceHandler surface in _bindedSolid.Surfaces.List()) {
+            surface.SetVisibility(isVisible);
 
         }
 
@@ -140,8 +144,8 @@ public class EditSolidView : MonoBehaviour {
 
     public void ToggleOutline(bool toEnable) {
         _bindedSolid.Mesh.enabled = toEnable;
-        foreach (MeshRenderer meshRenderer in _bindedSolid.Surfaces.List())
-            meshRenderer.enabled = !toEnable;
+        foreach (SurfaceHandler surface in _bindedSolid.Surfaces.List())
+            surface.SetVisibility(!toEnable);
 
         if (toEnable) {
             _bindedSolid.Mesh.material = Controller.Instance.OutlineMaterial;
@@ -204,20 +208,21 @@ public class EditSolidView : MonoBehaviour {
 
     #region Color
 
-    UnityEngine.Color? _pickedColor = null;
+    UnityEngine.Color _pickedColor;
     bool _individualPaint = false;
     public bool IndividualPaint { get { return _individualPaint; } }
+    public UnityEngine.Color PickedColor { get { return _pickedColor; } }
 
     public void ToggleIndividualPaint(bool toEnable) {
-        Debug.Log("Value (" + toEnable + ") Before: " + _bindedSolid.SolidPersonalization[EditSolidOption.IndividualPaint].IsToggled());
-        _bindedSolid.SolidPersonalization[EditSolidOption.IndividualPaint].SetToggle(toEnable);
-        Debug.Log("Value (" + toEnable + ") After: " + _bindedSolid.SolidPersonalization[EditSolidOption.IndividualPaint].IsToggled());
+        _bindedSolid.SolidPersonalization[EditSolidOption.IndividualPaint].SetBool(toEnable);
         _individualPaint = toEnable;
+
     }
 
     public void PickColor(string hexColor) {
+        EditMethod = EditMethod.Paint;
         _pickedColor = Parser.HexToColor(hexColor);
-
+        Debug.Log("Edit Method Paint");
     }
 
     public void SetSolidColor(string hexColor) {

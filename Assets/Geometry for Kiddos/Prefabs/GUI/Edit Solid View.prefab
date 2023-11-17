@@ -2135,6 +2135,7 @@ MonoBehaviour:
   panelTitle: {fileID: 8958422419951652721}
   panelOffsetX: 0.33
   EditMode: 0
+  EditMethod: 0
   SubPanels:
   - EditMode: 1
     Panel: {fileID: 2821168353820459330}
@@ -2146,8 +2147,8 @@ MonoBehaviour:
     Panel: {fileID: 7670205304920815429}
   _hideSolidCheckbox: {fileID: 4413925426941389344}
   SolidPersonalization:
-  - Value: 0
-    Checkbox: {fileID: 2912120641321877106}
+  - Option: 0
+    Button: {fileID: 2912120641321877106}
 --- !u!114 &822369757513070072
 MonoBehaviour:
   m_ObjectHideFlags: 0

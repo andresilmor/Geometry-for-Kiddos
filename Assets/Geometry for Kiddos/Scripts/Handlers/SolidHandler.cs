@@ -4,6 +4,7 @@ using MixedReality.Toolkit.UX;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro.EditorUtilities;
 using UnityEngine;
 
@@ -31,16 +32,19 @@ public class SolidHandler : MonoBehaviour {
     public ObjectManipulator ObjectManipulator { get { return _solidManipulator; } }
 
     public bool IsSolidColor = true;
-    public Color BackupColor;
+    public UnityEngine.Color BackupColor;
 
     #region Personalization
     [Serializable]
     public class Personalization {
-        public EditSolidOption Value;
-        public bool Toggled;
-        public void SetToggle(bool value) { Toggled = value; }
-        public bool IsToggled() { return Toggled; }
-        public EditSolidOption GetValue() { return Value; }
+        public EditSolidOption Option;
+        public bool Bool;
+        public string String;
+        public void SetBool(bool value) { Bool = value; }
+        public bool GetBool() { return Bool; }
+        public void SetString(string value) { String = value; }
+        public bool GetString() { return Bool; }
+        public EditSolidOption GetOption() { return Option; }
     }
 
     [SerializeField] Personalization[] PersonalizationValues;
@@ -54,14 +58,9 @@ public class SolidHandler : MonoBehaviour {
     }
 
     void Start() {
-        Debug.Log("Yo " + PersonalizationValues.Length);
-
-        foreach (Personalization personalization in PersonalizationValues) {
-            Debug.Log("Yo " + PersonalizationValues.Length);
-            Debug.Log("Adding");
-            SolidPersonalization.Add(personalization.GetValue(), personalization);
-        }
-
+        foreach (Personalization personalization in PersonalizationValues)
+            SolidPersonalization.Add(personalization.GetOption(), personalization);
+     
         _identifier = Guid.NewGuid(); 
         Controller.Instance.SolidsActives.Add(_identifier, this);
 
@@ -91,7 +90,7 @@ public class SolidHandler : MonoBehaviour {
 
     }
 
-    public void SetColor(Color color, GameObject[] surfaces = null) {
+    public void SetColor(UnityEngine.Color color, GameObject[] surfaces = null) {
         if (surfaces == null) {
             
 
@@ -112,13 +111,37 @@ public class SolidHandler : MonoBehaviour {
         Debug.Log(Controller.ApplicationMode);
         switch (Controller.ApplicationMode) {
             case ApplicationMode.Edit:
-                Controller.Instance.EditSolid?.gameObject.SetActive(true);
-                Controller.Instance.EditSolid?.BindSolid(this);
-                Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
-                position.y += -0.37f;
-                if (Controller.Instance.EditSolid != null) 
-                    Controller.Instance.EditSolid.gameObject.transform.position = position;
+                if (Controller.Instance.EditSolid.BindedSolid != this) {
+                    Debug.Log("Binding Solid");
+                    Controller.Instance.EditSolid?.gameObject.SetActive(true);
+                    Controller.Instance.EditSolid?.BindSolid(this);
+                    Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
+                    position.y += -0.37f;
+                    if (Controller.Instance.EditSolid != null) 
+                        Controller.Instance.EditSolid.gameObject.transform.position = position;
 
+                } else {
+                    Debug.Log("Solid Already binded");
+                    switch (Controller.Instance.EditSolid.EditMethod) {
+                        case EditMethod.Paint: {
+                                Debug.Log("Gonna Paint");
+                                Debug.Log("Picked color " + Controller.Instance.EditSolid.PickedColor);
+                                if (Controller.Instance.EditSolid.IndividualPaint) {
+                                    Debug.Log("Indivdual");
+                                } else {
+                                    Debug.Log("Full");
+                                    IsSolidColor = Controller.Instance.EditSolid.PickedColor.a >= 0.9f;
+                                    _surfaces.PaintAllSurfaces(Controller.Instance.EditSolid.PickedColor);
+
+                                }
+
+                                break;
+                            }
+
+                    }
+
+
+                }
                 break;
 
         }

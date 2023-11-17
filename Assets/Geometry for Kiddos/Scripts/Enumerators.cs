@@ -20,6 +20,11 @@ public enum SolidEditMode {
 
 }
 
+public enum EditMethod {
+    None,
+    Paint
+}
+
 public enum UserRole {
     Teacher,
     Student,
