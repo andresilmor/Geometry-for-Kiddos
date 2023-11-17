@@ -2096,7 +2096,7 @@ GameObject:
   - component: {fileID: 822369757513070072}
   - component: {fileID: 4576609894878167849}
   m_Layer: 0
-  m_Name: Edit Solid View
+  m_Name: Edit Solid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

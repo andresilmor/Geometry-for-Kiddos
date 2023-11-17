@@ -6,7 +6,7 @@ using UnityEngine;
 public class SolidSpawnerManager : MonoBehaviour
 {
     public static SolidSpawnerManager Instance = null;
-    [SerializeField] CreateMenuView _createMenuScreen;
+    [SerializeField] PlaygroundMenuView _createMenuScreen;
 
     [Serializable]
     public struct SpawnableSolid {
@@ -57,7 +57,8 @@ public class SolidSpawnerManager : MonoBehaviour
             _newSolid.transform.localPosition = new Vector3(0, 0, 0);
             _newSolid.transform.parent = Controller.Instance.Playground.transform;
             _newSolid.transform.localScale = Vector3.one;
-            _newSolid.transform.position = new Vector3(_newSolid.transform.position.x, _newSolid.transform.position.y - 1.525811f, _newSolid.transform.position.z - 0.6684352f);
+            //_newSolid.transform.position = new Vector3(_newSolid.transform.position.x, _newSolid.transform.position.y - 1.525811f, _newSolid.transform.position.z - 0.6684352f);
+            _newSolid.transform.rotation = objectReleased.transform.rotation;
 
         }
 

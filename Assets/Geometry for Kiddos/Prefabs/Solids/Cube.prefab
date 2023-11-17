@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _letterKey: Big Letter
+  _meshKey: Sphere
+  _designation: 
 --- !u!33 &1177512645181672626
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -202,6 +205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _letterKey: Big Letter
+  _meshKey: Sphere
+  _designation: 
 --- !u!33 &8472876500109955199
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1116,6 +1122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _letterKey: Big Letter
+  _meshKey: Sphere
+  _designation: 
 --- !u!33 &5801218762466224922
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1258,8 +1267,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6964685825784525314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.52, z: 0.6904705}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.16, y: 0.16, z: 0.16}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 772461169163481079}
@@ -2149,7 +2158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6964685826957892931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.03, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2381,6 +2390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _letterKey: Big Letter
+  _meshKey: Sphere
+  _designation: 
 --- !u!33 &8907631027901745677
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2491,6 +2503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _letterKey: Big Letter
+  _meshKey: Sphere
+  _designation: 
 --- !u!33 &6391948203289802140
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2646,6 +2661,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _letterKey: Big Letter
+  _meshKey: Sphere
+  _designation: 
 --- !u!33 &1763405629996454177
 MeshFilter:
   m_ObjectHideFlags: 0

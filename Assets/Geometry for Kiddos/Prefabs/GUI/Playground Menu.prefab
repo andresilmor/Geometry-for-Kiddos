@@ -2796,7 +2796,7 @@ GameObject:
   - component: {fileID: 87926252225613243}
   - component: {fileID: 3878345750974937962}
   m_Layer: 0
-  m_Name: Playground Menu View
+  m_Name: Playground Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2829,7 +2829,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5104527230722564875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c7ac58da6551e4eaaf971af80a1729, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ce4698ce168cbc4f856f36f3a5da1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &87926252225613243
