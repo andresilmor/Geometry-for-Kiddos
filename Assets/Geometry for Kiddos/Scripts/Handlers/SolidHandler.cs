@@ -5,7 +5,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class SolidHandler : MonoBehaviour {
@@ -108,7 +107,7 @@ public class SolidHandler : MonoBehaviour {
     public void DisplayEditPanel() {
         Controller.Instance.EditSolid.gameObject.SetActive(true);
         Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
-        position.y += -0.37f;
+        position.y = 1.6f;
         Controller.Instance.EditSolid.gameObject.transform.position = position;
 
     }

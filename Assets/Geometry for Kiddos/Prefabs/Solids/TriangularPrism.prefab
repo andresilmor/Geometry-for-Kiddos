@@ -1423,7 +1423,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.662428, y: 5.5130672, z: 4.933518}
+  m_Size: {x: 5.662428, y: 5.662428, z: 5.662428}
   m_Center: {x: -0.00800925, y: 0.08702428, z: 0.70574015}
 --- !u!114 &6964685825784525340
 MonoBehaviour:
@@ -1693,7 +1693,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundsVisualsPrefab: {fileID: 5671351296789090341, guid: 7b542306e34a62f4c9a822fcb19b7d99, type: 3}
-  boundsCalculationMethod: 0
+  boundsCalculationMethod: 2
   includeInactiveObjects: 0
   overrideBounds: 0
   boundsOverride: {fileID: 0}
