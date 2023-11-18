@@ -129,8 +129,14 @@ public class SolidHandler : MonoBehaviour {
                     switch (Controller.Instance.EditSolid.EditMethod) {
                         case EditMethod.Paint: {
                                 if (Controller.Instance.EditSolid.IndividualPaint) {
-                                    (Controller.Instance.EditSolid.SelectedComponentToPaint as SurfaceHandler).PaintSurface(Controller.Instance.EditSolid.PickedColor);
+                                    try {
+                                        Debug.Log(Controller.Instance.EditSolid.PickedColor);
 
+                                        (Controller.Instance.EditSolid.SelectedComponentToPaint as SurfaceHandler).PaintSurface(Controller.Instance.EditSolid.PickedColor);
+
+                                    } catch (Exception e) {
+                                        Debug.Log(e.Message);
+                                    }
                                 } else {
                                     IsSolidColor = Controller.Instance.EditSolid.PickedColor.a >= 0.9f;
                                     _surfaces.PaintAllSurfaces(Controller.Instance.EditSolid.PickedColor);
@@ -151,7 +157,8 @@ public class SolidHandler : MonoBehaviour {
     }
 
     void OnDisable() {
-        Controller.Instance.EditSolid.gameObject.gameObject.SetActive(false);
+        if (Controller.Instance.EditSolid != null)
+            Controller.Instance.EditSolid.gameObject.gameObject.SetActive(false);
 
 
     }

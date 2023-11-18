@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,7 @@ public class SurfaceHandler : SolidComponent
     private void OnTriggerEnter(Collider other) {
         switch (Controller.ApplicationMode) {
             case ApplicationMode.Edit: {
+                    Debug.Log("Yo");
                     switch (Controller.Instance.EditSolid.EditMethod) {
                         case EditMethod.Paint:
                             Controller.Instance.EditSolid.SelectedComponentToPaint = this;
