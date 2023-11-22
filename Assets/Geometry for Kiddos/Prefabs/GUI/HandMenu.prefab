@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 824707274103349369}
   - component: {fileID: 824707274103349370}
   m_Layer: 0
-  m_Name: Hand Menu
+  m_Name: HandMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

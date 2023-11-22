@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8428772119408636898}
   - component: {fileID: 7383367480470967246}
   m_Layer: 0
-  m_Name: Grab Bar
+  m_Name: GrabBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

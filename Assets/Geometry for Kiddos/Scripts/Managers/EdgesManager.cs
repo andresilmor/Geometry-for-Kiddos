@@ -6,9 +6,9 @@ public class EdgesManager : MonoBehaviour
 {
     [SerializeField] EdgeHandler[] _list;
 
-    public bool EnabledGlobalOcclusion = false;
+    public bool enabledGlobalOcclusion = false;
     bool _localOcclusion = false;
-    public bool EnabledOcclusion {
+    public bool enabledOcclusion {
         get { return _localOcclusion; }
         set {
             if (!value)

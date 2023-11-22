@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 2982317607748517225}
   - component: {fileID: 3525086910597361792}
   m_Layer: 5
-  m_Name: Edit Solid Sidebar Buttons
+  m_Name: EditSolidSidebarButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

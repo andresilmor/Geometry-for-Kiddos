@@ -8,9 +8,9 @@ using System.Drawing;
 using UnityEngine;
 
 public class SolidHandler : MonoBehaviour {
-    public string SolidDesignation = "Cube";
+    public string solidDesignation = "Cube";
     Guid _identifier;
-    public Guid Identifier { get { return _identifier; } }  
+    public Guid identifier { get { return _identifier; } }  
 
     [SerializeField] GameObject _solid;
     [SerializeField] EdgesManager _edges;
@@ -21,33 +21,33 @@ public class SolidHandler : MonoBehaviour {
 
     ObjectManipulator _solidManipulator;
 
-    public GameObject Solid { get { return _solid; } }
-    public EdgesManager Edges { get { return _edges; } }
-    public VerticesManager Vertices { get { return _vertices; } }
-    public SurfacesManager Surfaces { get { return _surfaces; } }
-    public PhysicsHandler Physics { get { return _physics; } }
-    public MeshRenderer Mesh { get { return _mesh; } }
+    public GameObject solid { get { return _solid; } }
+    public EdgesManager edges { get { return _edges; } }
+    public VerticesManager vertices { get { return _vertices; } }
+    public SurfacesManager surfaces { get { return _surfaces; } }
+    public PhysicsHandler physics { get { return _physics; } }
+    public MeshRenderer mesh { get { return _mesh; } }
 
-    public ObjectManipulator ObjectManipulator { get { return _solidManipulator; } }
+    public ObjectManipulator objectManipulator { get { return _solidManipulator; } }
 
-    public bool IsSolidColor = true;
-    public UnityEngine.Color BackupColor;
+    [HideInInspector] public bool isSolidColor = true;
+    [HideInInspector] public UnityEngine.Color backupColor;
 
     #region Personalization
     [Serializable]
     public class Personalization {
-        public EditSolidOption Option;
-        public bool Bool;
-        public string String;
-        public void SetBool(bool value) { Bool = value; }
-        public bool GetBool() { return Bool; }
-        public void SetString(string value) { String = value; }
-        public bool GetString() { return Bool; }
-        public EditSolidOption GetOption() { return Option; }
+        public EditSolidOption option;
+        public bool boolValue;
+        public string stringValue;
+        public void SetBool(bool value) { boolValue = value; }
+        public bool GetBool() { return boolValue; }
+        public void SetString(string value) { stringValue = value; }
+        public bool GetString() { return boolValue; }
+        public EditSolidOption GetOption() { return option; }
     }
 
-    [SerializeField] Personalization[] PersonalizationValues;
-    public Dictionary<EditSolidOption, Personalization> SolidPersonalization = new Dictionary<EditSolidOption, Personalization>();
+    [SerializeField] Personalization[] _personalizationValues;
+    public Dictionary<EditSolidOption, Personalization> solidPersonalization = new Dictionary<EditSolidOption, Personalization>();
    
 
     #endregion
@@ -57,37 +57,37 @@ public class SolidHandler : MonoBehaviour {
     }
 
     void Start() {
-        foreach (Personalization personalization in PersonalizationValues)
-            SolidPersonalization.Add(personalization.GetOption(), personalization);
+        foreach (Personalization personalization in _personalizationValues)
+            solidPersonalization.Add(personalization.GetOption(), personalization);
      
         _identifier = Guid.NewGuid(); 
-        Controller.Instance.SolidsActives.Add(_identifier, this);
+        Controller.Instance.solidsActives.Add(_identifier, this);
 
-        _solidManipulator = Solid.GetComponent<ObjectManipulator>();
+        _solidManipulator = solid.GetComponent<ObjectManipulator>();
 
         _edges.BindSolid(this);
         _vertices.BindSolid(this);
 
-        switch (Controller.ApplicationMode) {
+        switch (Controller.applicationMode) {
             case ApplicationMode.Manipulate:
-                ObjectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
+                objectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
                 break;
 
             case ApplicationMode.Edit:
-                ObjectManipulator.AllowedManipulations = TransformFlags.None;
+                objectManipulator.AllowedManipulations = TransformFlags.None;
                 break;
 
         }
 
-        Controller.OnApplicationModeChange.Add((ApplicationMode mode) => {
+        Controller.onApplicationModeChange.Add((ApplicationMode mode) => {
             switch (mode) {
                 case ApplicationMode.Manipulate:
-                    ObjectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
+                    objectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
                     break;
 
                 case ApplicationMode.Edit:
-                    Controller.Instance.EditSolid?.gameObject.SetActive(false);
-                    ObjectManipulator.AllowedManipulations = TransformFlags.None;
+                    Controller.Instance.editSolid?.gameObject.SetActive(false);
+                    objectManipulator.AllowedManipulations = TransformFlags.None;
                     break;
 
             }
@@ -105,40 +105,40 @@ public class SolidHandler : MonoBehaviour {
     }
 
     public void DisplayEditPanel() {
-        Controller.Instance.EditSolid.gameObject.SetActive(true);
+        Controller.Instance.editSolid.gameObject.SetActive(true);
         Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
         position.y = 1.6f;
-        Controller.Instance.EditSolid.gameObject.transform.position = position;
+        Controller.Instance.editSolid.gameObject.transform.position = position;
 
     }
 
     public void OnClick() {
-        Debug.Log(Controller.ApplicationMode);
-        switch (Controller.ApplicationMode) {
+        Debug.Log(Controller.applicationMode);
+        switch (Controller.applicationMode) {
             case ApplicationMode.Edit:
-                if (Controller.Instance.EditSolid.BindedSolid != this) {
+                if (Controller.Instance.editSolid.bindedSolid != this) {
                     Debug.Log("Binding Solid");
                     DisplayEditPanel();
-                    Controller.Instance.EditSolid.BindSolid(this);
+                    Controller.Instance.editSolid.BindSolid(this);
 
                 } else {
-                    if (!Controller.Instance.EditSolid.gameObject.activeSelf)
+                    if (!Controller.Instance.editSolid.gameObject.activeSelf)
                         DisplayEditPanel();
 
-                    switch (Controller.Instance.EditSolid.EditMethod) {
+                    switch (Controller.Instance.editSolid.editMethod) {
                         case EditMethod.Paint: {
-                                if (Controller.Instance.EditSolid.IndividualPaint) {
+                                if (Controller.Instance.editSolid.individualPaint) {
                                     try {
-                                        Debug.Log(Controller.Instance.EditSolid.PickedColor);
+                                        Debug.Log(Controller.Instance.editSolid.pickedColor);
 
-                                        (Controller.Instance.EditSolid.SelectedComponentToPaint as SurfaceHandler).PaintSurface(Controller.Instance.EditSolid.PickedColor);
+                                        (Controller.Instance.editSolid.selectedComponentToPaint as SurfaceHandler).PaintSurface(Controller.Instance.editSolid.pickedColor);
 
                                     } catch (Exception e) {
                                         Debug.Log(e.Message);
                                     }
                                 } else {
-                                    IsSolidColor = Controller.Instance.EditSolid.PickedColor.a >= 0.9f;
-                                    _surfaces.PaintAllSurfaces(Controller.Instance.EditSolid.PickedColor);
+                                    isSolidColor = Controller.Instance.editSolid.pickedColor.a >= 0.9f;
+                                    _surfaces.PaintAllSurfaces(Controller.Instance.editSolid.pickedColor);
 
                                 }
 
@@ -156,8 +156,8 @@ public class SolidHandler : MonoBehaviour {
     }
 
     void OnDisable() {
-        if (Controller.Instance.EditSolid != null)
-            Controller.Instance.EditSolid.gameObject.gameObject.SetActive(false);
+        if (Controller.Instance.editSolid != null)
+            Controller.Instance.editSolid.gameObject.gameObject.SetActive(false);
 
 
     }

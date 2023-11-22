@@ -29,12 +29,12 @@ public class SurfaceHandler : SolidComponent
     }
 
     private void OnTriggerEnter(Collider other) {
-        switch (Controller.ApplicationMode) {
+        switch (Controller.applicationMode) {
             case ApplicationMode.Edit: {
                     Debug.Log("Yo");
-                    switch (Controller.Instance.EditSolid.EditMethod) {
+                    switch (Controller.Instance.editSolid.editMethod) {
                         case EditMethod.Paint:
-                            Controller.Instance.EditSolid.SelectedComponentToPaint = this;
+                            Controller.Instance.editSolid.selectedComponentToPaint = this;
                             break;
 
                     }

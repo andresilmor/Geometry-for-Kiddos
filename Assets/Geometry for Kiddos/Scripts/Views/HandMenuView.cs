@@ -9,9 +9,9 @@ public class HandMenuView : MonoBehaviour
     [SerializeField] TextMeshPro _currentMode;
 
     public void SetApplicationMode(int mode) {
-        Controller.ApplicationMode = (ApplicationMode)mode;
-        _currentMode.text = Controller.ApplicationMode.ToString();
-        Debug.Log("Setting to " + mode + "(" + Controller.ApplicationMode.ToString() + ")");
+        Controller.applicationMode = (ApplicationMode)mode;
+        _currentMode.text = Controller.applicationMode.ToString();
+        Debug.Log("Setting to " + mode + "(" + Controller.applicationMode.ToString() + ")");
 
     }
 

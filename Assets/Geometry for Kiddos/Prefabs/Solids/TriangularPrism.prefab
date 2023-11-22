@@ -1853,7 +1853,7 @@ MonoBehaviour:
   - {fileID: 6964685826426203445}
   - {fileID: 6964685825644886848}
   - {fileID: 6964685827053887003}
-  EnabledGlobalOcclusion: 0
+  enabledGlobalOcclusion: 0
 --- !u!1 &6964685826045610603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,19 +2260,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc64a6a6fca812146939c38cd8d2e8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SolidDesignation: Cubo
+  solidDesignation: Triangular Prism
   _solid: {fileID: 6964685825784525314}
   _edges: {fileID: 4513003250364041406}
   _vertices: {fileID: 5060362525436632410}
   _surfaces: {fileID: 2891408286668533983}
   _physics: {fileID: 5937588067528240307}
   _mesh: {fileID: 3051688159503662048}
-  IsSolidColor: 1
-  BackupColor: {r: 0, g: 0, b: 0, a: 0}
-  PersonalizationValues:
-  - Option: 0
-    Bool: 0
-    String: 
+  isSolidColor: 1
+  backupColor: {r: 0, g: 0, b: 0, a: 0}
+  _personalizationValues: []
 --- !u!1 &6964685827053887001
 GameObject:
   m_ObjectHideFlags: 0

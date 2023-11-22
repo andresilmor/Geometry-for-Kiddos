@@ -14,8 +14,8 @@ abstract public class SolidComponent : MonoBehaviour {
     protected GameObject _letter;
     protected GameObject _camera;
 
-    public GameObject Mesh { get { return _mesh; } }
-    public GameObject Letter { get { return _letter; } }
+    public GameObject mesh { get { return _mesh; } }
+    public GameObject letter { get { return _letter; } }
 
     private void Awake() {
         _camera = GameObject.FindGameObjectWithTag("MainCamera");

@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4869042195020700772}
   - component: {fileID: 5625386007458975295}
   m_Layer: 0
-  m_Name: Title Bar
+  m_Name: TitleBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

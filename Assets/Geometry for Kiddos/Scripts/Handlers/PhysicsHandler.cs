@@ -9,9 +9,9 @@ public class PhysicsHandler : MonoBehaviour {
     BoxCollider _collider;
     Rigidbody _rigidbody;
 
-    public GameObject[] OcclusionBounds { get { return _occlusionBounds; } }
-    public Rigidbody Rigidbody { get { return _rigidbody; } }
-    public BoxCollider Collider { get { return _collider; } }
+    public GameObject[] occlusionBounds { get { return _occlusionBounds; } }
+    public Rigidbody rigidbody { get { return _rigidbody; } }
+    public BoxCollider collider { get { return _collider; } }
 
     // Start is called before the first frame update
     void Start() {

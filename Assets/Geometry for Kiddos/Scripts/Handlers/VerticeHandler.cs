@@ -8,7 +8,7 @@ public class VerticeHandler : SolidComponent {
     EdgeHandler[] _connectedEdges = null;
 
     bool _isVisible = true;
-    public bool IsVisible { get { return _isVisible; } }
+    public bool isVisible { get { return _isVisible; } }
 
     private void Start() {
         base.OnStart();

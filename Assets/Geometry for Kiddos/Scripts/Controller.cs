@@ -6,35 +6,35 @@ using UnityEngine;
 public class Controller : MonoBehaviour {
     public static Controller Instance = null; 
 
-    public static List<Action<ApplicationMode>> OnApplicationModeChange = new List<Action<ApplicationMode>>();
+    public static List<Action<ApplicationMode>> onApplicationModeChange = new List<Action<ApplicationMode>>();
     private static ApplicationMode _applicationMode;
-    public static ApplicationMode ApplicationMode {
+    public static ApplicationMode applicationMode {
         get { return _applicationMode; }
         set {
             _applicationMode = value;
-            foreach (Action<ApplicationMode> action in OnApplicationModeChange)
+            foreach (Action<ApplicationMode> action in onApplicationModeChange)
                 action?.Invoke(_applicationMode);
 
         }
     }
 
     [Header("Screens:")]
-    public HandMenuView HandMenu;
-    public EditSolidView EditSolid;
+    public HandMenuView handMenu;
+    public EditSolidView editSolid;
 
     [Header("Materials:")]
-    public Material DefaultMaterial;
-    public Material OutlineMaterial;
-    public Material TransparentMaterial;
-    public Material DefaultEdgeLineMaterial;
-    public Material DashedEdgeLineMaterial;
+    public Material defaultMaterial;
+    public Material outlineMaterial;
+    public Material transparentMaterial;
+    public Material defaultEdgeLineMaterial;
+    public Material dashedEdgeLineMaterial;
 
     [Header("Support:")]
-    public GameObject Playground;
-    public LayerMask OcclusionColliderLayer;
+    public GameObject playground;
+    public LayerMask occlusionColliderLayer;
 
     [Header("Info:")]
-    public Dictionary<Guid, SolidHandler> SolidsActives = new Dictionary<Guid, SolidHandler>();
+    public Dictionary<Guid, SolidHandler> solidsActives = new Dictionary<Guid, SolidHandler>();
 
 
     private void Awake() {
@@ -47,7 +47,7 @@ public class Controller : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        HandMenu.SetApplicationMode((int)ApplicationMode.Manipulate);
+        handMenu.SetApplicationMode((int)ApplicationMode.Manipulate);
 
     }
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7638118479942939750}
   - component: {fileID: 9059845018709258800}
   m_Layer: 5
-  m_Name: Shared Backplate
+  m_Name: SharedBackplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
