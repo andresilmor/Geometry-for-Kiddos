@@ -1,6 +1,6 @@
 # HoloShape
 
-Branchs:
+Branches:
 > dev: Updated Development/Progress
 > 
 > stable-version: Versions used for field/lab test
