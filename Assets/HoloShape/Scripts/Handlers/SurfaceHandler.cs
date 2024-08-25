@@ -29,12 +29,11 @@ public class SurfaceHandler : SolidComponent
     }
 
     private void OnTriggerEnter(Collider other) {
-        switch (Controller.ApplicationMode) {
+        switch (GameManager.ApplicationMode) {
             case ApplicationMode.Edit: {
-                    Debug.Log("Yo");
-                    switch (Controller.Instance.editSolid.editMethod) {
+                    switch (GameManager.Instance.editPolyhedronMenu.editMethod) {
                         case EditMethod.Paint:
-                            Controller.Instance.editSolid.selectedComponentToPaint = this;
+                            GameManager.Instance.editPolyhedronMenu.selectedComponentToPaint = this;
                             break;
 
                     }

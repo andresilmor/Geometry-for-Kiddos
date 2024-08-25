@@ -13,6 +13,7 @@ public class ObjectSpawnerManager : MonoBehaviour
         public string name;
         public GameObject grabSolid;
         [HideInInspector] public Vector3 grabSolidStartPos;
+        [HideInInspector] public Quaternion grabSolidStartRos;
         public GameObject solid;
     }
 
@@ -33,6 +34,7 @@ public class ObjectSpawnerManager : MonoBehaviour
         _collider = GetComponent<Collider>();
         for (int index = 0; index < spawnableSolids.Length; index++) {
             spawnableSolids[index].grabSolidStartPos = spawnableSolids[index].grabSolid.transform.localPosition;
+            spawnableSolids[index].grabSolidStartRos = spawnableSolids[index].grabSolid.transform.localRotation;
             spawnableSolids[index].name = spawnableSolids[index].grabSolid.name;
             _spawnableSolids.Add(spawnableSolids[index].name, spawnableSolids[index]);
 
@@ -45,12 +47,11 @@ public class ObjectSpawnerManager : MonoBehaviour
     }
 
     public void OnRelease(GameObject objectReleased) {
-        Debug.Log("Hello There");
         if (_toInstantiate && _spawnableSolids[objectReleased.gameObject.name].solid != null) {
             Debug.Log("Gonna Instantiate");
             _newSolid = Instantiate(_spawnableSolids[objectReleased.gameObject.name].solid,  Vector3.zero, Quaternion.identity, objectReleased.transform.GetChild(0).transform);
             _newSolid.transform.localPosition = new Vector3(0, 0, 0);
-            _newSolid.transform.parent = Controller.Instance.playground.transform;
+            _newSolid.transform.parent = GameManager.Instance.playground.transform;
             _newSolid.transform.localScale = Vector3.one;
             //_newSolid.transform.position = new Vector3(_newSolid.transform.position.x, _newSolid.transform.position.y - 1.525811f, _newSolid.transform.position.z - 0.6684352f);
             _newSolid.transform.rotation = objectReleased.transform.rotation;
@@ -58,6 +59,7 @@ public class ObjectSpawnerManager : MonoBehaviour
         }
 
         objectReleased.transform.localPosition = _spawnableSolids[objectReleased.gameObject.name].grabSolidStartPos;
+        objectReleased.transform.localRotation = _spawnableSolids[objectReleased.gameObject.name].grabSolidStartRos;
         _toInstantiate = false;
 
     }

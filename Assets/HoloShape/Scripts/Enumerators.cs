@@ -33,7 +33,17 @@ public enum UserRole {
 }
 
 public enum EditSolidOption {
-    IndividualPaint
+    ColorIndividualPaint,
+    VerticesShowLetters,
+    VerticesShowMarkers,
+    EdgesModeOutline,
+    EdgesShowMarkers,
+    EdgesShowLetters,
+    EdgesHideSolid,
+    EdgesOcclusion,
+    EdgesGlobalOcclusion,
+    PhysicsGravity,
+    PhysicsCollision
 }
 
 

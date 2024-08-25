@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour {
-    public static Controller Instance = null; 
+public class GameManager : MonoBehaviour {
+    public static GameManager Instance = null; 
 
     public static List<Action<ApplicationMode>> OnApplicationModeChange = new List<Action<ApplicationMode>>();
     private static ApplicationMode _applicationMode;
@@ -20,7 +20,7 @@ public class Controller : MonoBehaviour {
 
     [Header("Screens:")]
     public HandMenuView handMenu;
-    public EditSolidView editSolid;
+    public EditPolyhedronMenuView editPolyhedronMenu;
 
     [Header("Materials:")]
     public Material defaultMaterial;
@@ -34,7 +34,7 @@ public class Controller : MonoBehaviour {
     public LayerMask occlusionColliderLayer;
 
     [Header("Info:")]
-    public Dictionary<Guid, SolidHandler> solidsActives = new Dictionary<Guid, SolidHandler>();
+    public Dictionary<Guid, PolyhedronHandler> solidsActives = new Dictionary<Guid, PolyhedronHandler>();
 
 
     private void Awake() {
@@ -47,6 +47,7 @@ public class Controller : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+
         handMenu.SetApplicationMode((int)ApplicationMode.Manipulate);
 
     }

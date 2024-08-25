@@ -22,7 +22,7 @@ public class VerticesManager : MonoBehaviour
         return _list;
     }
 
-    public void BindSolid(SolidHandler solid) {
+    public void BindSolid(PolyhedronHandler solid) {
         foreach (VerticeHandler vertice in _list)
             vertice.BindSolid(solid);
     }

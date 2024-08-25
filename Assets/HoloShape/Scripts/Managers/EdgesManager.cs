@@ -33,7 +33,7 @@ public class EdgesManager : MonoBehaviour
         return _list;
     }
 
-    public void BindSolid(SolidHandler solid) {
+    public void BindSolid(PolyhedronHandler solid) {
         foreach (EdgeHandler edge in _list)
             edge.BindSolid(solid);
     }

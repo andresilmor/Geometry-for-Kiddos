@@ -6935,8 +6935,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f85af46f9bddd4ea78f11cee5e3b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handType: 3
-  proximityType: 3
+  handType: -1
+  proximityType: -1
   executionOrder: 0
   minimumScale: {x: 0.1, y: 0.1, z: 0.1}
   maximumScale: {x: 100, y: 100, z: 100}
@@ -8004,7 +8004,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6799939873833151770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc64a6a6fca812146939c38cd8d2e8ca, type: 3}
+  m_Script: {fileID: 11500000, guid: dad1a1cd7873a1746893826edd41c2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   solidDesignation: Cube
@@ -8013,13 +8013,10 @@ MonoBehaviour:
   _vertices: {fileID: 3859432735450887459}
   _surfaces: {fileID: 2757909848500426273}
   _physics: {fileID: 8943494370588307481}
-  _mesh: {fileID: 2626464581704829234}
+  _mesh: {fileID: 0}
   isSolidColor: 1
   backupColor: {r: 0, g: 0, b: 0, a: 0}
-  _personalizationValues:
-  - option: 0
-    boolValue: 0
-    stringValue: 
+  _personalizationValues: []
 --- !u!54 &6639221544963535372
 Rigidbody:
   m_ObjectHideFlags: 0

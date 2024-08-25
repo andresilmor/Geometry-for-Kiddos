@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
-public class SolidHandler : MonoBehaviour {
+public class PolyhedronHandler : MonoBehaviour {
     public string solidDesignation = "Cube";
     Guid _identifier;
     public Guid identifier { get { return _identifier; } }  
@@ -20,6 +20,7 @@ public class SolidHandler : MonoBehaviour {
     [SerializeField] MeshRenderer _mesh;
 
     ObjectManipulator _solidManipulator;
+    BoundsControl _solidHandles;
 
     public GameObject solid { get { return _solid; } }
     public EdgesManager edges { get { return _edges; } }
@@ -61,33 +62,38 @@ public class SolidHandler : MonoBehaviour {
             solidPersonalization.Add(personalization.GetOption(), personalization);
      
         _identifier = Guid.NewGuid(); 
-        Controller.Instance.solidsActives.Add(_identifier, this);
+        GameManager.Instance.solidsActives.Add(_identifier, this);
 
         _solidManipulator = solid.GetComponent<ObjectManipulator>();
 
         _edges.BindSolid(this);
         _vertices.BindSolid(this);
 
-        switch (Controller.ApplicationMode) {
+        switch (GameManager.ApplicationMode) {
             case ApplicationMode.Manipulate:
                 objectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
+                _solidHandles.HandlesActive = true;
                 break;
 
             case ApplicationMode.Edit:
                 objectManipulator.AllowedManipulations = TransformFlags.None;
+                _solidHandles.HandlesActive = false;
                 break;
 
         }
 
-        Controller.OnApplicationModeChange.Add((ApplicationMode mode) => {
+        GameManager.OnApplicationModeChange.Add((ApplicationMode mode) => {
             switch (mode) {
                 case ApplicationMode.Manipulate:
                     objectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
+                    _solidHandles.HandlesActive = true;
                     break;
 
                 case ApplicationMode.Edit:
-                    Controller.Instance.editSolid?.gameObject.SetActive(false);
+                    Debug.Log("EditMode");
                     objectManipulator.AllowedManipulations = TransformFlags.None;
+                    _solidHandles.HandlesActive = false;
+                    GameManager.Instance.editPolyhedronMenu?.gameObject.SetActive(false);
                     break;
 
             }
@@ -105,40 +111,40 @@ public class SolidHandler : MonoBehaviour {
     }
 
     public void DisplayEditPanel() {
-        Controller.Instance.editSolid.gameObject.SetActive(true);
-        Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.85f;
+        GameManager.Instance.editPolyhedronMenu.gameObject.SetActive(true);
+        Vector3 position = Camera.main.transform.position + Camera.main.transform.forward * 0.88f;
         position.y = 1.6f;
-        Controller.Instance.editSolid.gameObject.transform.position = position;
+        GameManager.Instance.editPolyhedronMenu.gameObject.transform.position = position;
 
     }
 
     public void OnClick() {
-        Debug.Log(Controller.ApplicationMode);
-        switch (Controller.ApplicationMode) {
+        Debug.Log(GameManager.ApplicationMode);
+        switch (GameManager.ApplicationMode) {
             case ApplicationMode.Edit:
-                if (Controller.Instance.editSolid.bindedSolid != this) {
+                if (GameManager.Instance.editPolyhedronMenu.bindedSolid != this) {
                     Debug.Log("Binding Solid");
+                    GameManager.Instance.editPolyhedronMenu.BindSolid(this);
                     DisplayEditPanel();
-                    Controller.Instance.editSolid.BindSolid(this);
 
                 } else {
-                    if (!Controller.Instance.editSolid.gameObject.activeSelf)
+                    if (!GameManager.Instance.editPolyhedronMenu.gameObject.activeSelf)
                         DisplayEditPanel();
 
-                    switch (Controller.Instance.editSolid.editMethod) {
+                    switch (GameManager.Instance.editPolyhedronMenu.editMethod) {
                         case EditMethod.Paint: {
-                                if (Controller.Instance.editSolid.individualPaint) {
+                                if (GameManager.Instance.editPolyhedronMenu.individualPaint) {
                                     try {
-                                        Debug.Log(Controller.Instance.editSolid.pickedColor);
+                                        Debug.Log(GameManager.Instance.editPolyhedronMenu.pickedColor);
 
-                                        (Controller.Instance.editSolid.selectedComponentToPaint as SurfaceHandler).PaintSurface(Controller.Instance.editSolid.pickedColor);
+                                        (GameManager.Instance.editPolyhedronMenu.selectedComponentToPaint as SurfaceHandler).PaintSurface(GameManager.Instance.editPolyhedronMenu.pickedColor);
 
                                     } catch (Exception e) {
                                         Debug.Log(e.Message);
                                     }
                                 } else {
-                                    isSolidColor = Controller.Instance.editSolid.pickedColor.a >= 0.9f;
-                                    _surfaces.PaintAllSurfaces(Controller.Instance.editSolid.pickedColor);
+                                    isSolidColor = GameManager.Instance.editPolyhedronMenu.pickedColor.a >= 0.9f;
+                                    _surfaces.PaintAllSurfaces(GameManager.Instance.editPolyhedronMenu.pickedColor);
 
                                 }
 
@@ -156,8 +162,8 @@ public class SolidHandler : MonoBehaviour {
     }
 
     void OnDisable() {
-        if (Controller.Instance.editSolid != null)
-            Controller.Instance.editSolid.gameObject.gameObject.SetActive(false);
+        if (GameManager.Instance.editPolyhedronMenu != null)
+            GameManager.Instance.editPolyhedronMenu.gameObject.gameObject.SetActive(false);
 
 
     }

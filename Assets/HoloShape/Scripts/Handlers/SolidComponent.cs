@@ -9,7 +9,7 @@ abstract public class SolidComponent : MonoBehaviour {
 
     [SerializeField] protected string _designation = "";
 
-    protected SolidHandler _solid;
+    protected PolyhedronHandler _solid;
     protected GameObject _mesh;
     protected GameObject _letter;
     protected GameObject _camera;
@@ -33,7 +33,7 @@ abstract public class SolidComponent : MonoBehaviour {
 
     }
 
-    public void BindSolid(SolidHandler solid) {
+    public void BindSolid(PolyhedronHandler solid) {
         _solid = solid;
     }
 

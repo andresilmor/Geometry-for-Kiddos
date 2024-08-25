@@ -3,9 +3,10 @@ using MixedReality.Toolkit.UX;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EditSolidView : MonoBehaviour {
+public class EditPolyhedronMenuView : MonoBehaviour {
     
     [Header("Panel Config:")]
     [SerializeField] TextMeshPro _panelTitle;
@@ -25,11 +26,12 @@ public class EditSolidView : MonoBehaviour {
 
     [Header("Components References:")]
     [SerializeField] PressableButton _hideSolidCheckbox;
+    [SerializeField] TextMeshPro _learnTextBox;
 
     GameObject _currentSubPanel = null;
-    SolidHandler _bindedSolid;
+    PolyhedronHandler _bindedSolid;
 
-    public SolidHandler bindedSolid { get { return _bindedSolid; } }
+    public PolyhedronHandler bindedSolid { get { return _bindedSolid; } }
 
     #region Personalization
     [Serializable]
@@ -68,6 +70,9 @@ public class EditSolidView : MonoBehaviour {
             _subPanels[(SolidEditMode)editMode].SetActive(true);
             _currentSubPanel = _subPanels[(SolidEditMode)editMode];
 
+            if (this.editMode != SolidEditMode.Learn && (SolidEditMode)editMode == SolidEditMode.Learn)
+                OnEnableLearn();
+
             this.editMode = (SolidEditMode)editMode;
             editMethod = EditMethod.None;
 
@@ -78,12 +83,12 @@ public class EditSolidView : MonoBehaviour {
     }
 
     public void OnClosePanel() {
-        Controller.Instance.handMenu.SetApplicationMode(0);
+        GameManager.Instance.handMenu.SetApplicationMode(0);
         InvalidateEditMethod(new EditMethod[] { EditMethod.Paint });
 
     }
 
-    public void BindSolid(SolidHandler solid) {
+    public void BindSolid(PolyhedronHandler solid) {
         _bindedSolid = solid;
         Debug.Log("Binding " + solidPersonalization.Length);
         _panelTitle.text = "Editing " + _bindedSolid.solidDesignation;
@@ -105,31 +110,45 @@ public class EditSolidView : MonoBehaviour {
 
     }
 
+    public void DeleteShape() {
+        _bindedSolid.gameObject.SetActive(false);
+        foreach (KeyValuePair<SolidEditMode, GameObject> subPanel in _subPanels) {
+            subPanel.Value.SetActive(false);
+        }
+
+
+    }
+
     #region Edit Edges
 
     public void ToggleEdgeLetters(bool toShow) {
+        _bindedSolid.solidPersonalization[EditSolidOption.EdgesShowLetters].SetBool(toShow);
         foreach (EdgeHandler edge in _bindedSolid.edges.List())
             edge.letter.gameObject.SetActive(toShow);
 
     }
 
     public void ToggleEdgeMarkers(bool toShow) {
+        _bindedSolid.solidPersonalization[EditSolidOption.EdgesShowMarkers].SetBool(toShow);
         foreach (EdgeHandler edge in _bindedSolid.edges.List())
             edge.mesh.gameObject.SetActive(toShow);
 
     }
 
     public void ToggleOcclusion(bool toEnable) {
+        _bindedSolid.solidPersonalization[EditSolidOption.EdgesOcclusion].SetBool(toEnable);
         _bindedSolid.edges.enabledOcclusion = toEnable;
 
     }
 
     public void ToggleGlobalOcclusion(bool toEnable) {
+        _bindedSolid.solidPersonalization[EditSolidOption.EdgesGlobalOcclusion].SetBool(toEnable);
         _bindedSolid.edges.enabledGlobalOcclusion = toEnable;
 
     }
 
     public void ToggleSolidVisibility(bool isVisible) {
+        _bindedSolid.solidPersonalization[EditSolidOption.EdgesHideSolid].SetBool(isVisible);
         foreach (SurfaceHandler surface in _bindedSolid.surfaces.List()) {
             surface.SetVisibility(isVisible);
 
@@ -139,29 +158,30 @@ public class EditSolidView : MonoBehaviour {
         _bindedSolid.mesh.enabled = !isVisible;
 
         if (!isVisible) {
-            _bindedSolid.mesh.material = Controller.Instance.transparentMaterial;
+            _bindedSolid.mesh.material = GameManager.Instance.transparentMaterial;
             return;
 
         }
 
-        _bindedSolid.mesh.material = Controller.Instance.defaultMaterial;
+        _bindedSolid.mesh.material = GameManager.Instance.defaultMaterial;
 
 
 
     }
 
     public void ToggleOutline(bool toEnable) {
+        _bindedSolid.solidPersonalization[EditSolidOption.EdgesModeOutline].SetBool(toEnable);
         _bindedSolid.mesh.enabled = toEnable;
         foreach (SurfaceHandler surface in _bindedSolid.surfaces.List())
             surface.SetVisibility(!toEnable);
 
         if (toEnable) {
-            _bindedSolid.mesh.material = Controller.Instance.outlineMaterial;
+            _bindedSolid.mesh.material = GameManager.Instance.outlineMaterial;
             return;
 
         }
 
-        _bindedSolid.mesh.material = Controller.Instance.defaultMaterial;
+        _bindedSolid.mesh.material = GameManager.Instance.defaultMaterial;
         //foreach (EdgeHandler edge in _bindedSolid.SolidEdges) {
          //   edge.ResetLineMaterial();
            // edge.ResetOcclusionedVariables();
@@ -175,12 +195,14 @@ public class EditSolidView : MonoBehaviour {
     #region Edit Vertices
 
     public void ToggleVerticeLetters(bool toShow) {
+        _bindedSolid.solidPersonalization[EditSolidOption.VerticesShowLetters].SetBool(toShow);
         foreach (VerticeHandler vertice in _bindedSolid.vertices.List())
             vertice.letter.gameObject.SetActive(toShow);
 
     }
 
     public void ToggleVerticeMarkers(bool toShow) {
+        _bindedSolid.solidPersonalization[EditSolidOption.VerticesShowMarkers].SetBool(toShow);
         foreach (VerticeHandler vertice in _bindedSolid.vertices.List())
             vertice.mesh.gameObject.SetActive(toShow);
 
@@ -191,11 +213,13 @@ public class EditSolidView : MonoBehaviour {
     #region Edit Physics
 
     public void ToggleGravity(bool toEnable) {
+        _bindedSolid.solidPersonalization[EditSolidOption.PhysicsGravity].SetBool(toEnable);
         _bindedSolid.physics.rigidbody.isKinematic = !toEnable;
 
     }
 
     public void ToggleCollision(bool toEnable) {
+        _bindedSolid.solidPersonalization[EditSolidOption.PhysicsCollision].SetBool(toEnable);
         if (toEnable) {
             _bindedSolid.physics.rigidbody.gameObject.layer = LayerMask.NameToLayer("Default");
             _bindedSolid.physics.rigidbody.isKinematic = false;
@@ -223,7 +247,7 @@ public class EditSolidView : MonoBehaviour {
     [HideInInspector] public SolidComponent selectedComponentToPaint;
 
     public void ToggleIndividualPaint(bool toEnable) {
-        _bindedSolid.solidPersonalization[EditSolidOption.IndividualPaint].SetBool(toEnable);
+        _bindedSolid.solidPersonalization[EditSolidOption.ColorIndividualPaint].SetBool(toEnable);
         _individualPaint = toEnable;
 
         if (editMethod.Equals(EditMethod.Paint))
@@ -245,7 +269,13 @@ public class EditSolidView : MonoBehaviour {
 
     #endregion
 
+    private async void OnEnableLearn() {
+        _learnTextBox.text = await ChatGPTController.AskChatGPT("With less than 408 characters (counting with spaces), explain, in english and as if talking with a 10 years old student, what a " + _bindedSolid.solidDesignation + " is.");
+
+    }
+
     private void OnEnable() {
+
         if (_bindedSolid != null) {
             _hideSolidCheckbox.ForceSetToggled(!_bindedSolid.isSolidColor);
 

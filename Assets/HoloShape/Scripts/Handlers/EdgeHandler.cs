@@ -49,7 +49,7 @@ public class EdgeHandler : SolidComponent {
     }
 
     public void ResetLineMaterial() {
-        _lineRenderer.material = Controller.Instance.defaultEdgeLineMaterial;
+        _lineRenderer.material = GameManager.Instance.defaultEdgeLineMaterial;
     }
 
     private void UpdateLocalOcclusionMaterial() {
@@ -60,7 +60,7 @@ public class EdgeHandler : SolidComponent {
             Transform cameraTransform = _camera.transform;
 
             RaycastHit hit;
-            if (Physics.Raycast(verticePos, cameraTransform.position - verticePos, out hit, Mathf.Infinity, Controller.Instance.occlusionColliderLayer)) {
+            if (Physics.Raycast(verticePos, cameraTransform.position - verticePos, out hit, Mathf.Infinity, GameManager.Instance.occlusionColliderLayer)) {
                 foreach (GameObject bound in _solid.physics.occlusionBounds)
                     if (hit.collider.gameObject == bound)
                         _visibleVertices -= 1;
@@ -71,11 +71,11 @@ public class EdgeHandler : SolidComponent {
         }
 
         if (_visibleVertices < _vertices.Length) { 
-            _lineRenderer.material = Controller.Instance.dashedEdgeLineMaterial;
+            _lineRenderer.material = GameManager.Instance.dashedEdgeLineMaterial;
             _localOcclusioned = true;
 
         } else if (_visibleVertices == _vertices.Length && !_globalOcclusioned) { 
-            _lineRenderer.material = Controller.Instance.defaultEdgeLineMaterial;
+            _lineRenderer.material = GameManager.Instance.defaultEdgeLineMaterial;
             _localOcclusioned = false;
         
         }
@@ -98,7 +98,7 @@ public class EdgeHandler : SolidComponent {
 
             RaycastHit hit;
             int count = 0;
-            if (Physics.Raycast(verticePos, cameraTransform.position - verticePos, out hit, Mathf.Infinity, Controller.Instance.occlusionColliderLayer)) {
+            if (Physics.Raycast(verticePos, cameraTransform.position - verticePos, out hit, Mathf.Infinity, GameManager.Instance.occlusionColliderLayer)) {
                 foreach (GameObject bound in _solid.physics.occlusionBounds)
                     if (hit.collider.gameObject != bound) { 
                         _visibleVertices -= 1;
@@ -110,11 +110,11 @@ public class EdgeHandler : SolidComponent {
         }
 
         if (_visibleVertices <= 0) { 
-            _lineRenderer.material = Controller.Instance.dashedEdgeLineMaterial;
+            _lineRenderer.material = GameManager.Instance.dashedEdgeLineMaterial;
             _globalOcclusioned = true;
         
         } else if (_visibleVertices > 0 && !_localOcclusioned) { 
-            _lineRenderer.material = Controller.Instance.defaultEdgeLineMaterial;
+            _lineRenderer.material = GameManager.Instance.defaultEdgeLineMaterial;
             _globalOcclusioned = false;
 
         }
