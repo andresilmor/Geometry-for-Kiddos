@@ -148,7 +148,7 @@ public class EditPolyhedronMenuView : MonoBehaviour {
     }
 
     public void ToggleSolidVisibility(bool isVisible) {
-        _bindedSolid.solidPersonalization[EditSolidOption.EdgesHideSolid].SetBool(isVisible);
+        _bindedSolid.solidPersonalization[EditSolidOption.SurfacesHideSolid].SetBool(isVisible);
         foreach (SurfaceHandler surface in _bindedSolid.surfaces.List()) {
             surface.SetVisibility(isVisible);
 

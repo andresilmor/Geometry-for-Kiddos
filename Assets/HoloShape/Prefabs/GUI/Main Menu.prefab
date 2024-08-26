@@ -847,7 +847,7 @@ MonoBehaviour:
       m_Calls: []
   hostTransform: {fileID: 337732367412404554}
   allowedManipulations: 3
-  allowedInteractionTypes: -2147483641
+  allowedInteractionTypes: -1
   rigidbodyMovementType: 0
   applyTorque: 1
   springForceSoftness: 0.1
@@ -17534,6 +17534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6979697839444258995}
+  - component: {fileID: 7106633215178877664}
   m_Layer: 0
   m_Name: Header
   m_TagString: Untagged
@@ -17565,6 +17566,27 @@ RectTransform:
   m_AnchoredPosition: {x: 139.36942, y: -89.6218}
   m_SizeDelta: {x: 0.11672974, y: 0.061897278}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!65 &7106633215178877664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5177251421344145165}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16183427, y: 0.062170744, z: 0.025271177}
+  m_Center: {x: -0.001924172, y: 0.0064457655, z: 0.0007876754}
 --- !u!1 &5183445273265258785
 GameObject:
   m_ObjectHideFlags: 0
@@ -20608,6 +20630,7 @@ MonoBehaviour:
   m_Colliders:
   - {fileID: 2239279456467039696}
   - {fileID: 2239279456544877234}
+  - {fileID: 7106633215178877664}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -24487,7 +24510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HoloShape Panel
+  m_text: Home Panel
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 533bdd8d5c92b52448ee2ecf7bd828a4, type: 2}
   m_sharedMaterial: {fileID: -1005824763306460071, guid: 533bdd8d5c92b52448ee2ecf7bd828a4, type: 2}

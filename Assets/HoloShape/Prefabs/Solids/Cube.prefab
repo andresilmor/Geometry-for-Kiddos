@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: proximityType
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2626464581704829234, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3468466683261329638, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -28,6 +32,10 @@ PrefabInstance:
       propertyPath: scaleBehavior
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5847069975957663410, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: _mesh
+      value: 
+      objectReference: {fileID: 1553228817740651860}
     - target: {fileID: 5847069975957663410, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: _personalizationValues.Array.size
       value: 11
@@ -160,11 +168,24 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8347893750092930031, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015910642635631987, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+--- !u!23 &1553228817740651860 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2626464581704829234, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+  m_PrefabInstance: {fileID: 3602104539621987430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3081245348383382933 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1963559197522708979, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}

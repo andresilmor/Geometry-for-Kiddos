@@ -20,7 +20,7 @@ public class PolyhedronHandler : MonoBehaviour {
     [SerializeField] MeshRenderer _mesh;
 
     ObjectManipulator _solidManipulator;
-    BoundsControl _solidHandles;
+    BoundsControl _solidBounds;
 
     public GameObject solid { get { return _solid; } }
     public EdgesManager edges { get { return _edges; } }
@@ -65,6 +65,8 @@ public class PolyhedronHandler : MonoBehaviour {
         GameManager.Instance.solidsActives.Add(_identifier, this);
 
         _solidManipulator = solid.GetComponent<ObjectManipulator>();
+        _solidBounds = solid.GetComponent<BoundsControl>();
+
 
         _edges.BindSolid(this);
         _vertices.BindSolid(this);
@@ -72,12 +74,13 @@ public class PolyhedronHandler : MonoBehaviour {
         switch (GameManager.ApplicationMode) {
             case ApplicationMode.Manipulate:
                 objectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
-                _solidHandles.HandlesActive = true;
+
+                _solidBounds.HandlesActive = true;
                 break;
 
             case ApplicationMode.Edit:
                 objectManipulator.AllowedManipulations = TransformFlags.None;
-                _solidHandles.HandlesActive = false;
+                _solidBounds.HandlesActive = false;
                 break;
 
         }
@@ -86,13 +89,13 @@ public class PolyhedronHandler : MonoBehaviour {
             switch (mode) {
                 case ApplicationMode.Manipulate:
                     objectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
-                    _solidHandles.HandlesActive = true;
+                    _solidBounds.HandlesActive = true;
                     break;
 
                 case ApplicationMode.Edit:
                     Debug.Log("EditMode");
                     objectManipulator.AllowedManipulations = TransformFlags.None;
-                    _solidHandles.HandlesActive = false;
+                    _solidBounds.HandlesActive = false;
                     GameManager.Instance.editPolyhedronMenu?.gameObject.SetActive(false);
                     break;
 

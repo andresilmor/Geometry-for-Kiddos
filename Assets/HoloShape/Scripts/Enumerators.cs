@@ -39,7 +39,7 @@ public enum EditSolidOption {
     EdgesModeOutline,
     EdgesShowMarkers,
     EdgesShowLetters,
-    EdgesHideSolid,
+    SurfacesHideSolid,
     EdgesOcclusion,
     EdgesGlobalOcclusion,
     PhysicsGravity,
