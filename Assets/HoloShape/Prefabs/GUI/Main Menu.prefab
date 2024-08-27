@@ -15560,16 +15560,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _createMenuScreen: {fileID: 7448769462207673534}
   spawnableSolids:
-  - name: Cube
-    grabSolid: {fileID: 913051837317019048}
-    grabSolidStartPos: {x: 0, y: 0, z: 0}
-    grabSolidStartRos: {x: 0, y: 0, z: 0, w: 0}
-    solid: {fileID: 8044277447520909692, guid: bd6336d3fd891164c8224e8596e9fdb2, type: 3}
-  - name: TriangularPrism
+  - name: LightSource
     grabSolid: {fileID: 8592906072761068227}
     grabSolidStartPos: {x: 0, y: 0, z: 0}
     grabSolidStartRos: {x: 0, y: 0, z: 0, w: 0}
-    solid: {fileID: 6964685826957892931, guid: 3c861ca0b0477144e8ad5d1cbe6cd621, type: 3}
+    solid: {fileID: 100000, guid: b694b8ec5c41f6247843a2b67222fda6, type: 3}
+  - name: Surface
+    grabSolid: {fileID: 913051837317019048}
+    grabSolidStartPos: {x: 0, y: 0, z: 0}
+    grabSolidStartRos: {x: 0, y: 0, z: 0, w: 0}
+    solid: {fileID: 8595989754533637797, guid: 3ce0bc750e6e3d245979060a0f570a05, type: 3}
 --- !u!1 &4156509966011381903
 GameObject:
   m_ObjectHideFlags: 0

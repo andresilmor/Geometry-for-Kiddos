@@ -112,6 +112,8 @@ public class EditPolyhedronMenuView : MonoBehaviour {
 
     public void DeleteShape() {
         _bindedSolid.gameObject.SetActive(false);
+        ObjectPoolingController.AddToPool(_bindedSolid.solidDesignation, _bindedSolid.gameObject);
+
         foreach (KeyValuePair<SolidEditMode, GameObject> subPanel in _subPanels) {
             subPanel.Value.SetActive(false);
         }

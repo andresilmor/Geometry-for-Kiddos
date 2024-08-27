@@ -74,13 +74,13 @@ public class PolyhedronHandler : MonoBehaviour {
         switch (GameManager.ApplicationMode) {
             case ApplicationMode.Manipulate:
                 objectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
-
-                _solidBounds.HandlesActive = true;
+                _solidBounds.ToggleHandlesOnClick = true;
                 break;
 
             case ApplicationMode.Edit:
                 objectManipulator.AllowedManipulations = TransformFlags.None;
                 _solidBounds.HandlesActive = false;
+                _solidBounds.ToggleHandlesOnClick = false;
                 break;
 
         }
@@ -89,13 +89,13 @@ public class PolyhedronHandler : MonoBehaviour {
             switch (mode) {
                 case ApplicationMode.Manipulate:
                     objectManipulator.AllowedManipulations = TransformFlags.Move | TransformFlags.Rotate | TransformFlags.Scale;
-                    _solidBounds.HandlesActive = true;
+                    _solidBounds.ToggleHandlesOnClick = true;
                     break;
 
-                case ApplicationMode.Edit:
-                    Debug.Log("EditMode");
+                case ApplicationMode.Edit:  
                     objectManipulator.AllowedManipulations = TransformFlags.None;
                     _solidBounds.HandlesActive = false;
+                    _solidBounds.ToggleHandlesOnClick = false;
                     GameManager.Instance.editPolyhedronMenu?.gameObject.SetActive(false);
                     break;
 

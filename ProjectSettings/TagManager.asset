@@ -9,6 +9,7 @@ TagManager:
   - OcclusionCollider
   - RightHandReticle
   - LeftHandReticle
+  - ObjectPool
   layers:
   - Default
   - TransparentFX
