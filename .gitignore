@@ -70,3 +70,39 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Assets
+Assets/KANIYONIKA.meta
+Assets/KANIYONIKA
+Assets/KANIYONIKA/
+Assets/KANIYONIKA/*
+
+Assets/TextMesh Pro.meta
+Assets/TextMesh Pro
+Assets/TextMesh Pro/
+Assets/TextMesh Pro/*
+
+Assets/Deluxe Primitives.meta
+Assets/Deluxe Primitives
+Assets/Deluxe Primitives/
+Assets/Deluxe Primitives/*
+
+Assets/MRTK3 Samples.meta
+Assets/MRTK3 Samples
+Assets/MRTK3 Samples/
+Assets/MRTK3 Samples/*
+
+Assets/+100 Wooden Parts.meta
+Assets/+100 Wooden Parts
+Assets/+100 Wooden Parts/
+Assets/+100 Wooden Parts/*
+
+Assets/Flashlight.meta
+Assets/Flashlight
+Assets/Flashlight/
+Assets/Flashlight/*
+
+Assets/polyhedronGenerator.meta
+Assets/polyhedronGenerator
+Assets/polyhedronGenerator/
+Assets/polyhedronGenerator/*
