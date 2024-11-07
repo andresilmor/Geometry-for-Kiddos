@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SurfaceHandler : SolidComponent
+public class FaceHandler : SolidComponent
 {
     Color _latestColor;
     Color _currentColor;
@@ -16,7 +16,7 @@ public class SurfaceHandler : SolidComponent
 
     }
 
-    public void PaintSurface(Color newColor) {
+    public void PaintFace(Color newColor) {
         _latestColor = _currentColor;
         _currentColor = newColor;
         _meshRenderer.material.color = newColor;
@@ -31,9 +31,9 @@ public class SurfaceHandler : SolidComponent
     private void OnTriggerEnter(Collider other) {
         switch (GameManager.ApplicationMode) {
             case ApplicationMode.Edit: {
-                    switch (GameManager.Instance.editPolyhedronMenu.editMethod) {
+                    switch (GameManager.Instance.EditPolyhedronMenu.EditMethod) {
                         case EditMethod.Paint:
-                            GameManager.Instance.editPolyhedronMenu.selectedComponentToPaint = this;
+                            GameManager.Instance.EditPolyhedronMenu.selectedComponentToPaint = this;
                             break;
 
                     }

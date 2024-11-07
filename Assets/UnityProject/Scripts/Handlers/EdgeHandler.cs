@@ -35,11 +35,11 @@ public class EdgeHandler : SolidComponent {
             _lineRenderer.SetPosition(0, _vertices[0].mesh.transform.position);
             _lineRenderer.SetPosition(1, _vertices[1].mesh.transform.position);
 
-            if (_solid.edges.enabledOcclusion && !_solid.isSolidColor && _vertices != null && _vertices.Length > 0) {
+            if (_solid.Edges.enabledOcclusion && !_solid.isSolidColor && _vertices != null && _vertices.Length > 0) {
                 Debug.Log("Here");
                 UpdateLocalOcclusionMaterial();
 
-                if (_solid.edges.enabledGlobalOcclusion)
+                if (_solid.Edges.enabledGlobalOcclusion)
                     UpdateGlobalOcclusionMaterial();
 
             }
@@ -61,7 +61,7 @@ public class EdgeHandler : SolidComponent {
 
             RaycastHit hit;
             if (Physics.Raycast(verticePos, cameraTransform.position - verticePos, out hit, Mathf.Infinity, GameManager.Instance.occlusionColliderLayer)) {
-                foreach (GameObject bound in _solid.physics.occlusionBounds)
+                foreach (GameObject bound in _solid.Physics.occlusionBounds)
                     if (hit.collider.gameObject == bound)
                         _visibleVertices -= 1;
                
@@ -99,7 +99,7 @@ public class EdgeHandler : SolidComponent {
             RaycastHit hit;
             int count = 0;
             if (Physics.Raycast(verticePos, cameraTransform.position - verticePos, out hit, Mathf.Infinity, GameManager.Instance.occlusionColliderLayer)) {
-                foreach (GameObject bound in _solid.physics.occlusionBounds)
+                foreach (GameObject bound in _solid.Physics.occlusionBounds)
                     if (hit.collider.gameObject != bound) { 
                         _visibleVertices -= 1;
                     }

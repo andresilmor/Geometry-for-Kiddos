@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public enum ApplicationMode {
     Manipulate,
     Edit,
-    Attach,
-    Dettach
+    Interact
 
 }
 
@@ -30,6 +30,12 @@ public enum UserRole {
     Student,
     Spectator
 
+}
+
+public enum ShapeBaseFormat {
+    Undefined,
+    Square,
+    Triangle
 }
 
 public enum EditSolidOption {

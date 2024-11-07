@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SurfacesManager : MonoBehaviour
+public class FacesManager : MonoBehaviour
 {
-    [SerializeField] SurfaceHandler[] _list;
+    [SerializeField] FaceHandler[] _list;
 
 
     // Start is called before the first frame update
@@ -19,13 +19,13 @@ public class SurfacesManager : MonoBehaviour
         
     }
 
-    public SurfaceHandler[] List() {
+    public FaceHandler[] List() {
         return _list;
     }
 
-    public void PaintAllSurfaces(Color color) {
-        foreach (SurfaceHandler surface in _list)
-            surface.PaintSurface(color);
+    public void PaintAllFaces(Color color) {
+        foreach (FaceHandler surface in _list)
+            surface.PaintFace(color);
     }
 
 }

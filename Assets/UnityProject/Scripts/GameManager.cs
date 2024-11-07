@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour {
     }
 
     [Header("Screens:")]
-    public HandMenuView handMenu;
-    public EditPolyhedronMenuView editPolyhedronMenu;
+    public HandMenuView HandMenu;
+    public EditPolyhedronMenuView EditPolyhedronMenu;
 
     [Header("Materials:")]
     public Material defaultMaterial;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
 
-        handMenu.SetApplicationMode((int)ApplicationMode.Manipulate);
+        HandMenu.SetApplicationMode((int)ApplicationMode.Manipulate);
 
     }
 

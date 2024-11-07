@@ -1482,7 +1482,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.638, y: 0.615, z: -0.50999993}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1888791241051934553}
   - {fileID: 341431385996235580}
@@ -3914,7 +3914,7 @@ GameObject:
   - component: {fileID: 752743715614883304}
   - component: {fileID: 6314693791434226984}
   m_Layer: 6
-  m_Name: Surface
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3944,7 +3944,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3075002640428309375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f48b19e1ba11f64e91c2383bb631e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _letterKey: Big Letter
@@ -5549,7 +5549,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.652, y: 0.6150001, z: 0.48599988}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4897684789897231258}
   - {fileID: 2814505301700299721}
@@ -5665,7 +5665,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.638, y: -0.6120002, z: -0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4941107746367611775}
   - {fileID: 1328110027998835825}
@@ -5750,7 +5750,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.638, y: -0.6120002, z: 0.48599988}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8937096392184616396}
   - {fileID: 5512582120763247538}
@@ -6283,7 +6283,7 @@ GameObject:
   - component: {fileID: 5960066740119363240}
   - component: {fileID: 1459790027901103204}
   m_Layer: 6
-  m_Name: Surface
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6313,7 +6313,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5334246516934597988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f48b19e1ba11f64e91c2383bb631e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _letterKey: Big Letter
@@ -6585,7 +6585,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3609234137017696477}
-  - component: {fileID: 4866310261551062452}
   - component: {fileID: 7790197930849194824}
   - component: {fileID: 7632236059313323446}
   - component: {fileID: 4279331167638265009}
@@ -6613,27 +6612,6 @@ Transform:
   m_Father: {fileID: 6906314104353484299}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4866310261551062452
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5968729895079885130}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.05, y: 1.05, z: 1.05}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7790197930849194824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6662,7 +6640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 4866310261551062452}
+  - {fileID: 0}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
@@ -7514,7 +7492,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.652, y: 0.6150001, z: -0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7020123804990007101}
   - {fileID: 8390916575703060356}
@@ -8007,13 +7985,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad1a1cd7873a1746893826edd41c2d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidDesignation: Cube
+  SolidDesignation: Cube
+  BaseFormat: 0
   _solid: {fileID: 5968729895079885130}
   _edges: {fileID: 4951695517516216246}
   _vertices: {fileID: 3859432735450887459}
   _surfaces: {fileID: 2757909848500426273}
   _physics: {fileID: 8943494370588307481}
-  _mesh: {fileID: 0}
+  _mesh: {fileID: 2626464581704829234}
   isSolidColor: 1
   backupColor: {r: 0, g: 0, b: 0, a: 0}
   _personalizationValues: []
@@ -8058,7 +8037,7 @@ GameObject:
   - component: {fileID: 7230422755864390055}
   - component: {fileID: 333510164004849863}
   m_Layer: 6
-  m_Name: Surface
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8088,7 +8067,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6819123572334876851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f48b19e1ba11f64e91c2383bb631e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _letterKey: Big Letter
@@ -9311,7 +9290,7 @@ GameObject:
   - component: {fileID: 6345276360700733410}
   - component: {fileID: 7172170905810877510}
   m_Layer: 6
-  m_Name: Surface
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9341,7 +9320,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7752431700469157657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f48b19e1ba11f64e91c2383bb631e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _letterKey: Big Letter
@@ -9444,7 +9423,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.652, y: -0.612, z: -0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1393204136376709467}
   - {fileID: 2409662490166261918}
@@ -9527,7 +9506,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.652, y: -0.6120002, z: 0.48599988}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3896432485343390042}
   - {fileID: 1616634763200564611}
@@ -9862,7 +9841,7 @@ GameObject:
   - component: {fileID: 763769868545171171}
   - component: {fileID: 2757909848500426273}
   m_Layer: 0
-  m_Name: Surfaces
+  m_Name: Faces
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9986,7 +9965,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.638, y: 0.6150001, z: 0.486}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 688263581235570637}
   - {fileID: 378738475566143456}
@@ -10315,7 +10294,7 @@ GameObject:
   - component: {fileID: 4736252321874882813}
   - component: {fileID: 663829925344446567}
   m_Layer: 6
-  m_Name: Surface
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10345,7 +10324,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8603003020666829843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f48b19e1ba11f64e91c2383bb631e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _letterKey: Big Letter
@@ -11059,7 +11038,7 @@ GameObject:
   - component: {fileID: 5126687926351559182}
   - component: {fileID: 8590280480254108970}
   m_Layer: 6
-  m_Name: Surface
+  m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11089,7 +11068,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9082490681200643280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0eb651bd3bb7cf4d93e4ff66fd1e245, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f48b19e1ba11f64e91c2383bb631e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _letterKey: Big Letter

@@ -25,6 +25,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4279331167638265009, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: boundsPadding
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279331167638265009, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: handlesActive
       value: 1
       objectReference: {fileID: 0}
@@ -32,10 +36,18 @@ PrefabInstance:
       propertyPath: scaleBehavior
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4279331167638265009, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: boundsVisualsPrefab
+      value: 
+      objectReference: {fileID: 5671351296789090341, guid: 7ce973b16029199419661f105a41e82d, type: 3}
     - target: {fileID: 5847069975957663410, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: _mesh
       value: 
       objectReference: {fileID: 1553228817740651860}
+    - target: {fileID: 5847069975957663410, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: baseFormat
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5847069975957663410, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: _personalizationValues.Array.size
       value: 11
@@ -81,16 +93,28 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5968729895079885130, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: m_Name
+      value: Solid
+      objectReference: {fileID: 0}
+    - target: {fileID: 5968729895079885130, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6639221544963535372, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: m_Drag
-      value: 0.5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639221544963535372, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6639221544963535372, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: m_AngularDrag
-      value: 0.5
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639221544963535372, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6799939873833151770, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: m_Icon
@@ -152,6 +176,10 @@ PrefabInstance:
       propertyPath: rigidbodyMovementType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7632236059313323446, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+      propertyPath: m_Colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 1071845687758995300}
     - target: {fileID: 7790197930849194824, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
       propertyPath: autoConstraintSelection
       value: 1
@@ -181,6 +209,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+--- !u!65 &1071845687758995300 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 4549421804910095106, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
+  m_PrefabInstance: {fileID: 3602104539621987430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &1553228817740651860 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2626464581704829234, guid: 9fe6bd2d31dde494aa1b0ec792ec1363, type: 3}
