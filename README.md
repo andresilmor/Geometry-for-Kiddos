@@ -1,4 +1,4 @@
-# Learning Geometry with Mixed Reality
+# Geometry with Mixed Reality
 
 ## Scientific Productions:
 > ### Conference Papers 
