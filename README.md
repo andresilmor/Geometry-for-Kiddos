@@ -1,4 +1,4 @@
-# HoloShape
+# Learning Geometry with Mixed Reality
 
 ## Scientific Productions:
 > ### Conference Papers 
